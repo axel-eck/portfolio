@@ -42,9 +42,6 @@ bun run preview
 - `app/assets/css/main.css`: Tailwind theme, base styles and writing prose styles
 - `i18n/locales/fr.json`: French copy
 - `i18n/locales/en.json`: English copy
-- `server/api/writings.get.ts`: localized writings API
-- `server/api/cv.get.ts`: localized CV availability API
-- `server/utils/writings.ts`: markdown loading and parsing
 - `content/writings/fr`: French markdown notes
 - `content/writings/en`: English markdown notes
 - `public/fr/cv.pdf`: French CV
@@ -71,7 +68,7 @@ tags: nuxt, infra
 Markdown body goes here.
 ```
 
-The page requests `/api/writings?locale=fr` or `/api/writings?locale=en` based on the active language.
+Markdown is imported at build time, so the writing system works on static hosting such as GitHub Pages.
 
 ## CV Files
 
@@ -82,7 +79,27 @@ public/fr/cv.pdf
 public/en/cv.pdf
 ```
 
-The page checks `/api/cv?locale=fr` or `/api/cv?locale=en` before rendering the download link.
+The browser checks the localized PDF with a static `HEAD` request before rendering the download link. This keeps the buttons from pointing to missing files while still working on GitHub Pages.
+
+## GitHub Pages
+
+The repository deploys through `.github/workflows/pages.yml`.
+
+The workflow runs:
+
+```bash
+bun install --frozen-lockfile
+bun run generate
+```
+
+For the project page URL, it sets:
+
+```text
+NUXT_APP_BASE_URL=/portfolio/
+NUXT_PUBLIC_SITE_URL=https://axel-eck.github.io/portfolio
+```
+
+If the site later moves to a custom domain at the root, remove the custom `NUXT_APP_BASE_URL` value or set it to `/`, and update `NUXT_PUBLIC_SITE_URL`.
 
 ## SEO
 

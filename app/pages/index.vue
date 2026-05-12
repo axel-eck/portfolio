@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { Motion, type Transition } from 'motion-v'
+import { marked } from 'marked'
 
 const { locale, t } = useI18n()
+const runtimeConfig = useRuntimeConfig()
 const requestUrl = useRequestURL()
-const siteOrigin = requestUrl.origin
+const siteUrl = computed(() => String(runtimeConfig.public.siteUrl || requestUrl.origin).replace(/\/$/, ''))
+const withBase = (path: string) => `${runtimeConfig.app.baseURL.replace(/\/$/, '')}/${path.replace(/^\//, '')}`
 
 useHead({
   htmlAttrs: {
     lang: () => locale.value,
   },
   link: [
-    { rel: 'canonical', href: () => `${siteOrigin}/` },
-    { rel: 'alternate', hreflang: 'fr', href: () => `${siteOrigin}/` },
-    { rel: 'alternate', hreflang: 'en', href: () => `${siteOrigin}/` },
+    { rel: 'canonical', href: () => `${siteUrl.value}/` },
+    { rel: 'alternate', hreflang: 'fr', href: () => `${siteUrl.value}/` },
+    { rel: 'alternate', hreflang: 'en', href: () => `${siteUrl.value}/` },
   ],
 })
 
@@ -23,27 +26,17 @@ useSeoMeta({
   ogTitle: () => t('seo.title'),
   ogDescription: () => t('seo.description'),
   ogType: 'profile',
-  ogUrl: () => `${siteOrigin}/`,
-  ogImage: () => `${siteOrigin}/og.svg`,
+  ogUrl: () => `${siteUrl.value}/`,
+  ogImage: () => `${siteUrl.value}/og.svg`,
   ogImageAlt: () => t('seo.image_alt'),
   twitterCard: 'summary_large_image',
   twitterTitle: () => t('seo.title'),
   twitterDescription: () => t('seo.description'),
-  twitterImage: () => `${siteOrigin}/og.svg`,
+  twitterImage: () => `${siteUrl.value}/og.svg`,
 })
 
-interface CvStatus {
-  available: boolean
-  href: string
-}
-
-const { data: cvStatus } = await useFetch<CvStatus>('/api/cv', {
-  default: () => ({ available: false, href: `/${locale.value}/cv.pdf` }),
-  query: { locale },
-  watch: [locale],
-})
-const cvHref = computed(() => cvStatus.value?.href ?? `/${locale.value}/cv.pdf`)
-const hasCv = computed(() => cvStatus.value?.available ?? false)
+const cvHref = computed(() => withBase(`${locale.value}/cv.pdf`))
+const hasCv = ref(false)
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
@@ -98,11 +91,61 @@ interface Writing {
   excerpt: string
   html: string
 }
-const { data: writings } = await useFetch<Writing[]>('/api/writings', {
-  default: () => [],
-  query: { locale },
-  watch: [locale],
-})
+type WritingLocale = 'fr' | 'en'
+
+const writingSources = import.meta.glob('../../content/writings/**/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
+
+function parseHeader(raw: string): { meta: Record<string, string>, body: string } {
+  const lines = raw.replace(/\r\n/g, '\n').split('\n')
+  const sepIdx = lines.findIndex(line => /^-{3,}\s*$/.test(line))
+  const headerLines = sepIdx === -1 ? [] : lines.slice(0, sepIdx)
+  const bodyLines = sepIdx === -1 ? lines : lines.slice(sepIdx + 1)
+  const meta: Record<string, string> = {}
+
+  for (const line of headerLines) {
+    const match = line.match(/^(\w+)\s*:\s*(.+)\s*$/)
+    if (match) meta[match[1]!.toLowerCase()] = match[2]!.trim()
+  }
+
+  return { meta, body: bodyLines.join('\n').trim() }
+}
+
+function plainExcerpt(body: string, max = 220) {
+  const text = body
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/[#>*_`[\]]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+  return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text
+}
+
+function loadWritings(localeCode: string): Writing[] {
+  const writingLocale: WritingLocale = localeCode === 'en' ? 'en' : 'fr'
+
+  return Object.entries(writingSources)
+    .filter(([path]) => path.includes(`/content/writings/${writingLocale}/`))
+    .map(([path, raw]) => {
+      const name = path.split('/').pop() ?? ''
+      const { meta, body } = parseHeader(raw)
+
+      return {
+        slug: name.replace(/\.md$/, ''),
+        title: meta.title ?? name.replace(/\.md$/, ''),
+        date: meta.date ?? '',
+        tags: (meta.tags ?? '').split(',').map(tag => tag.trim()).filter(Boolean),
+        excerpt: plainExcerpt(body),
+        html: marked.parse(body, { gfm: true, breaks: false, async: false }) as string,
+      }
+    })
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+}
+
+const writings = computed(() => loadWritings(locale.value))
 const openWriting = ref<string | null>(null)
 
 const projects = ['eventdeer', 'kent', 'lucca', 'freelance'] as const
@@ -117,6 +160,21 @@ const hobbies = [
   { id: 'diy',      icon: 'lucide:hammer' },
 ] as const
 const openProject = ref<string | null>(null)
+
+watch(locale, () => {
+  openWriting.value = null
+})
+
+watch(cvHref, async (href) => {
+  if (import.meta.server) return
+
+  try {
+    const response = await fetch(href, { method: 'HEAD' })
+    hasCv.value = response.ok
+  } catch {
+    hasCv.value = false
+  }
+}, { immediate: true })
 </script>
 
 <template>
