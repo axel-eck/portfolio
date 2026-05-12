@@ -204,6 +204,23 @@ watch(cvHref, async (href) => {
       <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
         <div>
           <Motion
+            :initial="{ opacity: 0, scale: 0.9 }" :animate="{ opacity: 1, scale: 1 }"
+            :transition="{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }"
+            class="mb-5 inline-flex items-center gap-3"
+          >
+            <img
+              src="/avatar.jpg"
+              :alt="$t('hero.name')"
+              width="56"
+              height="56"
+              loading="eager"
+              decoding="async"
+              class="size-14 rounded-2xl object-cover ring-1 ring-inset ring-ink-700/70 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]"
+            />
+            <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">{{ $t('hero.tagline') }}</span>
+          </Motion>
+
+          <Motion
             :initial="{ opacity: 0, y: 10 }" :animate="{ opacity: 1, y: 0 }"
             :transition="{ duration: 0.5 }"
             class="inline-flex items-center gap-2 rounded-full border border-ink-700/70 bg-ink-900/60 px-3 py-1 font-mono text-xs text-ink-300 backdrop-blur"
