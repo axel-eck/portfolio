@@ -113,6 +113,17 @@ function getRingTarget() {
   }
 
   const rect = activeMagneticEl.getBoundingClientRect()
+
+  if (activeMagneticEl.dataset.magneticShape === 'underline') {
+    return {
+      x: rect.left + rect.width / 2,
+      y: rect.bottom + 3,
+      width: rect.width + 8,
+      height: 2,
+      radius: 2,
+    }
+  }
+
   const width = rect.width + MAGNETIC_RING_PADDING
   const height = rect.height + MAGNETIC_RING_PADDING
 
@@ -159,6 +170,10 @@ function frame() {
     ringEl.value.style.height = `${ring.height}px`
     ringEl.value.style.borderRadius = `${ring.radius}px`
     ringEl.value.style.transform = `translate3d(${ring.x + shakeX}px, ${ring.y + shakeY}px, 0) translate(-50%, -50%)`
+    ringEl.value.classList.toggle(
+      'cursor-ring--underline',
+      activeMagneticEl?.dataset.magneticShape === 'underline',
+    )
   }
 
   // glow lerps slower for softer feel
@@ -330,6 +345,12 @@ onBeforeUnmount(() => {
 .cursor-ring--interactive {
   width: 52px;
   height: 52px;
+}
+
+.cursor-ring--underline {
+  border-color: transparent;
+  background: var(--color-main-400);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-main-400) 60%, transparent);
 }
 
 .cursor-dot {

@@ -145,6 +145,7 @@ function levelClass(level: number | undefined) {
 
       <div class="mt-4 flex items-center justify-between gap-3 font-mono text-[10px] text-ink-500">
         <a
+          v-magnetic="{ strength: 0.25, radius: 60, shape: 'underline' }"
           href="https://github.com/axel-eck"
           target="_blank"
           rel="noopener"
