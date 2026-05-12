@@ -469,7 +469,7 @@ watch(cvHref, async (href) => {
           :title="$t('projects.title')"
           :subtitle="$t('projects.subtitle')"
         />
-        <div class="grid gap-6 sm:grid-cols-2">
+        <div class="grid gap-6 sm:grid-cols-2 items-start">
           <Motion
             v-for="(p, i) in projects"
             :key="p"
