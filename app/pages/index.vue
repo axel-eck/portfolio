@@ -160,6 +160,13 @@ const hobbies = [
   { id: 'diy',      icon: 'lucide:hammer' },
 ] as const
 const openProject = ref<string | null>(null)
+const heroCardReady = ref(false)
+
+onMounted(() => {
+  requestAnimationFrame(() => {
+    heroCardReady.value = true
+  })
+})
 
 watch(locale, () => {
   openWriting.value = null
@@ -277,9 +284,15 @@ watch(cvHref, async (href) => {
           </Motion>
         </div>
 
-        <div class="lg:justify-self-end">
+        <Motion
+          as="div"
+          :initial="{ opacity: 0, x: 42, y: 10, scale: 0.96 }"
+          :animate="heroCardReady ? { opacity: 1, x: 0, y: 0, scale: 1 } : { opacity: 0, x: 42, y: 10, scale: 0.96 }"
+          :transition="{ duration: 0.7, delay: 0.42, ease: [0.22, 1, 0.36, 1] }"
+          class="min-w-0 will-change-transform lg:justify-self-end"
+        >
           <ArgoSyncCard />
-        </div>
+        </Motion>
       </div>
     </section>
 
