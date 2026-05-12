@@ -199,7 +199,7 @@ watch(cvHref, async (href) => {
         class="pointer-events-none absolute inset-x-0 top-0 -z-10 cursor-grid-glow"
         style="height: 175%;"
       />
-      <div class="absolute inset-x-0 top-0 -z-10 h-160 bg-[radial-gradient(60rem_30rem_at_50%_-20%,rgba(34,197,94,0.10),transparent_60%)]" />
+      <div class="absolute inset-x-0 top-0 -z-10 h-160 bg-[radial-gradient(60rem_30rem_at_50%_-20%,var(--hero-halo),transparent_60%)]" />
 
       <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
         <div>

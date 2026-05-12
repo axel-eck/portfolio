@@ -32,6 +32,8 @@
   --cursor-glow: rgba(34, 197, 94, 0.09);
   --main-shadow: rgba(34, 197, 94, 0.4);
   --link-underline: rgba(34, 197, 94, 0.4);
+  --warn-shadow: rgba(245, 158, 11, 0.7);
+  --hero-halo: rgba(34, 197, 94, 0.10);
 }
 
 @media (prefers-color-scheme: light) {
@@ -65,6 +67,7 @@
     --main-shadow: rgba(91, 33, 182, 0.45);
     --link-underline: rgba(91, 33, 182, 0.5);
     --warn-shadow: rgba(180, 83, 9, 0.45);
+    --hero-halo: rgba(124, 58, 237, 0.10);
 
     /* darken amber text shades so they stay readable on light bg */
     --color-amber-100: #78350f; /* amber-900 */
@@ -72,11 +75,11 @@
     --color-amber-300: #b45309; /* amber-700 */
     --color-amber-400: #b45309;
     --color-amber-500: #d97706; /* keep amber-600 for tints */
-  }
-}
 
-:root {
-  --warn-shadow: rgba(245, 158, 11, 0.7);
+    /* darken syntax-highlight palette for code blocks on light bg */
+    --color-pink-400: #be185d; /* pink-700 */
+    --color-sky-300:  #0369a1; /* sky-700 */
+  }
 }
 
 @layer base {
