@@ -10,6 +10,11 @@ type Ripple = { id: number; x: number; y: number; width: number; height: number;
 const ripples = ref<Ripple[]>([])
 let rippleId = 0
 const dotPressed = ref(false)
+let pressStart: number | null = null
+
+const SHAKE_DELAY_MS = 10000
+const SHAKE_RAMP_MS = 8000
+const SHAKE_MAX_PX = 14
 
 // instant cursor pos
 const target = { x: 0, y: 0 }
@@ -135,13 +140,25 @@ function frame() {
   ring.height += (ringTarget.height - ring.height) * RING_SIZE_LERP
   ring.radius += (ringTarget.radius - ring.radius) * RING_SIZE_LERP
 
+  let shakeX = 0
+  let shakeY = 0
+  if (pressStart !== null) {
+    const held = performance.now() - pressStart
+    if (held > SHAKE_DELAY_MS) {
+      const ramp = Math.min(1, (held - SHAKE_DELAY_MS) / SHAKE_RAMP_MS)
+      const amp = ramp * ramp * SHAKE_MAX_PX
+      shakeX = (Math.random() - 0.5) * 2 * amp
+      shakeY = (Math.random() - 0.5) * 2 * amp
+    }
+  }
+
   if (ringEl.value) {
     // Do not scale the ring here.
     // Scaling a thin border can make it blurry/pixelated.
     ringEl.value.style.width = `${ring.width}px`
     ringEl.value.style.height = `${ring.height}px`
     ringEl.value.style.borderRadius = `${ring.radius}px`
-    ringEl.value.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0) translate(-50%, -50%)`
+    ringEl.value.style.transform = `translate3d(${ring.x + shakeX}px, ${ring.y + shakeY}px, 0) translate(-50%, -50%)`
   }
 
   // glow lerps slower for softer feel
@@ -203,16 +220,19 @@ function onPointerDown(e: MouseEvent) {
   if (e.button !== 0) return
   spawnRipple()
   dotPressed.value = true
+  pressStart = performance.now()
 }
 
 function onPointerUp() {
   dotPressed.value = false
+  pressStart = null
 }
 
 function onLeave() {
   enabled.value = false
   setActiveMagneticEl(null)
   setHoverInteractive(false)
+  pressStart = null
   dotPressed.value = false
   document.documentElement.classList.remove('cursor-fx-on')
 }
