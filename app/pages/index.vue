@@ -180,7 +180,7 @@ watch(cvHref, async (href) => {
 <template>
   <div id="top" class="relative">
     <!-- HERO -->
-    <section class="relative isolate px-6 pt-32 pb-24 sm:pt-36 sm:pb-32">
+    <section class="relative isolate px-4 pt-32 pb-24 sm:px-6 sm:pt-36 sm:pb-32">
       <!-- grid bg, extends well below hero and fades out -->
       <div
         class="pointer-events-none absolute inset-x-0 top-0 -z-10 grid-bg opacity-70"
@@ -245,12 +245,12 @@ watch(cvHref, async (href) => {
           <Motion
             :initial="{ opacity: 0, y: 10 }" :animate="{ opacity: 1, y: 0 }"
             :transition="{ duration: 0.5, delay: 0.38 }"
-            class="mt-8 flex flex-wrap items-center gap-3"
+            class="mt-8 grid w-full max-w-sm grid-cols-2 gap-2.5 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:gap-3"
           >
             <a
               v-magnetic="{ strength: 0.54, radius: 110 }"
               href="#contact"
-              class="group inline-flex items-center gap-2 rounded-full bg-accent-500 px-5 py-2.5 text-sm font-medium text-ink-950 transition hover:bg-accent-400 data-[magnetic-active=true]:bg-accent-400"
+              class="group col-span-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-4 py-2.5 text-sm font-medium text-ink-950 transition hover:bg-accent-400 data-[magnetic-active=true]:bg-accent-400 sm:col-span-1 sm:px-5"
             >
               {{ $t('hero.cta_contact') }}
               <Icon name="lucide:arrow-right" class="size-4 transition group-hover:translate-x-0.5" />
@@ -258,7 +258,7 @@ watch(cvHref, async (href) => {
             <a
               v-magnetic="{ strength: 0.5, radius: 104 }"
               href="#projects"
-              class="inline-flex items-center gap-2 rounded-full border border-ink-700/70 bg-ink-900/40 px-5 py-2.5 text-sm text-ink-200 transition hover:border-ink-600 hover:bg-ink-800 data-[magnetic-active=true]:border-ink-600 data-[magnetic-active=true]:bg-ink-800"
+              class="inline-flex items-center justify-center gap-2 rounded-full border border-ink-700/70 bg-ink-900/40 px-4 py-2.5 text-sm text-ink-200 transition hover:border-ink-600 hover:bg-ink-800 data-[magnetic-active=true]:border-ink-600 data-[magnetic-active=true]:bg-ink-800 sm:px-5"
             >
               <Icon name="lucide:folder-open" class="size-4" />
               {{ $t('nav.projects') }}
@@ -269,7 +269,7 @@ watch(cvHref, async (href) => {
               :href="cvHref"
               download
               :aria-label="$t('contact.cv_aria')"
-              class="inline-flex items-center gap-2 rounded-full border border-ink-700/70 bg-ink-900/40 px-5 py-2.5 text-sm text-ink-200 transition hover:border-ink-600 hover:bg-ink-800 data-[magnetic-active=true]:border-ink-600 data-[magnetic-active=true]:bg-ink-800"
+              class="inline-flex items-center justify-center gap-2 rounded-full border border-ink-700/70 bg-ink-900/40 px-4 py-2.5 text-sm text-ink-200 transition hover:border-ink-600 hover:bg-ink-800 data-[magnetic-active=true]:border-ink-600 data-[magnetic-active=true]:bg-ink-800 sm:px-5"
             >
               <Icon name="lucide:file-down" class="size-4" />
               {{ $t('hero.cta_cv') }}

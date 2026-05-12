@@ -46,20 +46,20 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
 
 <template>
   <div
-    class="relative w-full max-w-155 rounded-2xl border border-ink-700/70 bg-ink-900/80 p-5 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur-xl"
+    class="relative w-full max-w-155 rounded-2xl border border-ink-700/70 bg-ink-900/80 p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:p-5"
   >
     <!-- header -->
-    <div class="flex items-center justify-between gap-3 border-b border-ink-800/80 pb-4">
+    <div class="flex items-center justify-between gap-2 border-b border-ink-800/80 pb-3 sm:gap-3 sm:pb-4">
       <div class="flex min-w-0 items-center gap-2.5">
-        <div class="flex size-8 items-center justify-center rounded-lg bg-ink-800 ring-1 ring-inset ring-ink-700/60">
-          <Icon name="lucide:infinity" class="size-4 text-accent-400" />
+        <div class="flex size-7 shrink-0 items-center justify-center rounded-lg bg-ink-800 ring-1 ring-inset ring-ink-700/60 sm:size-8">
+          <Icon name="lucide:infinity" class="size-3.5 text-accent-400 sm:size-4" />
         </div>
         <div class="min-w-0">
           <p class="truncate font-mono text-[13px] text-ink-100">{{ $t('hero.argo.title') }}</p>
           <p class="truncate font-mono text-[10px] text-ink-400">{{ $t('hero.argo.subtitle') }}</p>
         </div>
       </div>
-      <div class="flex shrink-0 items-center gap-1.5">
+      <div class="flex shrink-0 items-center gap-1">
         <Transition
           mode="out-in"
           enter-active-class="transition duration-300"
@@ -70,7 +70,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
           <span
             v-if="allDone"
             key="synced"
-            class="inline-flex items-center gap-1.5 rounded-full bg-accent-500/10 px-2 py-1 font-mono text-[10px] font-medium text-accent-300 ring-1 ring-inset ring-accent-500/30"
+            class="inline-flex items-center gap-1.5 rounded-full bg-accent-500/10 px-1.5 py-1 font-mono text-[9px] font-medium text-accent-300 ring-1 ring-inset ring-accent-500/30 sm:px-2 sm:text-[10px]"
           >
             <span class="size-1.5 rounded-full bg-accent-500" />
             {{ $t('hero.argo.synced') }}
@@ -78,7 +78,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
           <span
             v-else
             key="outofsync"
-            class="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2 py-1 font-mono text-[10px] font-medium text-amber-300 ring-1 ring-inset ring-amber-500/30"
+            class="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-1.5 py-1 font-mono text-[9px] font-medium text-amber-300 ring-1 ring-inset ring-amber-500/30 sm:px-2 sm:text-[10px]"
           >
             <Icon name="lucide:refresh-ccw" class="size-3 animate-spin [animation-duration:3s] [animation-direction:reverse]" />
             {{ $t('hero.argo.out_of_sync') }}
@@ -94,14 +94,14 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
     </div>
 
     <!-- graph -->
-    <div class="relative mt-7">
-      <div class="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-start gap-y-3">
+    <div class="relative mt-6 sm:mt-7">
+      <div class="grid min-w-0 grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-start gap-y-3">
         <template v-for="(s, i) in stages" :key="s.id">
           <!-- stage node -->
           <div class="flex flex-col items-center text-center">
             <div
               :class="[
-                'relative flex size-12 items-center justify-center rounded-xl ring-1 ring-inset transition-all duration-500',
+                'relative flex size-10 items-center justify-center rounded-xl ring-1 ring-inset transition-all duration-500 sm:size-12',
                 stageStates[i] === 'pending' && 'bg-ink-900/60 text-amber-400/50 ring-amber-500/20',
                 stageStates[i] === 'active'  && 'bg-accent-500/15 text-accent-200 ring-accent-500/60 shadow-[0_0_30px_-5px_var(--color-accent-500)] scale-[1.06]',
                 stageStates[i] === 'done'    && 'bg-accent-500/10 text-accent-300 ring-accent-500/40',
@@ -110,7 +110,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
               <Icon
                 :name="s.icon"
                 :class="[
-                  'size-5 transition-transform duration-500',
+                  'size-4 transition-transform duration-500 sm:size-5',
                   stageStates[i] === 'active' && s.id === 'argo' ? 'animate-spin [animation-duration:2.5s]' : '',
                 ]"
               />
@@ -147,19 +147,19 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
             </div>
             <p
               :class="[
-                'mt-3 font-mono text-[11px] font-semibold tracking-wide transition-colors duration-500',
+                'mt-3 font-mono text-[10px] font-semibold tracking-wide transition-colors duration-500 sm:text-[11px]',
                 stageStates[i] === 'pending' ? 'text-ink-500' : 'text-ink-100',
               ]"
             >
               {{ s.name }}
             </p>
-            <p class="mt-1 max-w-30 font-mono text-[9.5px] leading-tight text-ink-500">{{ s.detail }}</p>
+            <p class="mt-1 max-w-17 font-mono text-[8px] leading-tight text-ink-500 min-[380px]:max-w-22 sm:max-w-30 sm:text-[9.5px]">{{ s.detail }}</p>
           </div>
 
           <!-- connector -->
           <div
             v-if="i < stages.length - 1"
-            class="relative mt-6 h-0.5 w-12 sm:w-20"
+            class="relative mt-5 h-0.5 w-5 min-[380px]:w-7 sm:mt-6 sm:w-20"
           >
             <span class="absolute inset-0 rounded-full bg-ink-700/70" />
             <div
@@ -182,7 +182,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
     </div>
 
     <!-- footer -->
-    <div class="mt-7 flex items-center justify-between border-t border-ink-800/80 pt-3 font-mono text-[10px] text-ink-400">
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-ink-800/80 pt-3 font-mono text-[9px] text-ink-400 sm:mt-7 sm:text-[10px]">
       <span class="flex items-center gap-2">
         <Icon name="lucide:git-commit-vertical" class="size-3" />
         {{ $t('hero.argo.sha', { sha }) }}
