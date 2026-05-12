@@ -526,8 +526,25 @@ watch(cvHref, async (href) => {
       </div>
     </section>
 
-    <!-- STACK -->
+    <!-- GITHUB -->
     <section class="relative px-6 py-24 sm:py-32">
+      <div class="mx-auto max-w-6xl">
+        <Kicker
+          id="github"
+          :eyebrow="$t('github.kicker')"
+          :title="$t('github.title')"
+          :subtitle="$t('github.subtitle')"
+        />
+        <Motion
+          v-bind="fadeUp"
+        >
+          <GithubMosaic />
+        </Motion>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="relative border-t border-ink-800/60 px-6 py-24 sm:py-32">
       <div class="mx-auto max-w-6xl">
         <Kicker id="stack" :eyebrow="$t('stack.kicker')" :title="$t('stack.title')" />
         <div class="grid gap-px overflow-hidden rounded-2xl border border-ink-800/70 bg-ink-800/70 sm:grid-cols-2 lg:grid-cols-4">

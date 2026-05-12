@@ -138,6 +138,28 @@
       "edge": "Entrée du trafic et gestion des noms."
     }
   },
+  "github": {
+    "kicker": "GitHub",
+    "title": "Activité publique",
+    "subtitle": "Douze mois glissants de commits sur github.com/axel-eck. Le travail privé n'apparaît pas.",
+    "terminal": {
+      "path": "axel{'@'}portable : ~/git",
+      "command": "$ git log --since=1.year --pretty=oneline | wc -l",
+      "command_short": "$ git log | wc -l",
+      "last_year": "12 derniers mois",
+      "cache": "mis en cache 1 h"
+    },
+    "stats": {
+      "total": "contributions",
+      "active": "jours actifs",
+      "current": "série en cours",
+      "longest": "plus longue série"
+    },
+    "legend": {
+      "less": "moins",
+      "more": "plus"
+    }
+  },
   "path": {
     "kicker": "Parcours",
     "title": "Chronologie",

@@ -138,6 +138,28 @@
       "edge": "Traffic ingress and name management."
     }
   },
+  "github": {
+    "kicker": "GitHub",
+    "title": "Public activity",
+    "subtitle": "Twelve rolling months of commits on github.com/axel-eck. Private work not shown.",
+    "terminal": {
+      "path": "axel{'@'}laptop : ~/git",
+      "command": "$ git log --since=1.year --pretty=oneline | wc -l",
+      "command_short": "$ git log | wc -l",
+      "last_year": "last 12 months",
+      "cache": "cached 1h"
+    },
+    "stats": {
+      "total": "contributions",
+      "active": "active days",
+      "current": "current streak",
+      "longest": "longest streak"
+    },
+    "legend": {
+      "less": "less",
+      "more": "more"
+    }
+  },
   "path": {
     "kicker": "Path",
     "title": "Timeline",
