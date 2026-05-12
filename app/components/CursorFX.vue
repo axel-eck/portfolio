@@ -6,6 +6,11 @@ const dotEl = ref<HTMLElement | null>(null)
 const ringEl = ref<HTMLElement | null>(null)
 const glowEl = ref<HTMLElement | null>(null)
 
+type Ripple = { id: number; x: number; y: number; width: number; height: number; radius: number }
+const ripples = ref<Ripple[]>([])
+let rippleId = 0
+const dotPressed = ref(false)
+
 // instant cursor pos
 const target = { x: 0, y: 0 }
 // lagged cursor box
@@ -118,7 +123,7 @@ function getRingTarget() {
 function frame() {
   // dot follows target instantly
   if (dotEl.value) {
-    dotEl.value.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-50%, -50%)`
+    dotEl.value.style.transform = `translate3d(${target.x}px, ${target.y}px, 0)`
   }
 
   const ringTarget = getRingTarget()
@@ -179,10 +184,36 @@ function onClick(e: MouseEvent) {
   activeMagneticEl.click()
 }
 
+function spawnRipple() {
+  const id = ++rippleId
+  ripples.value.push({
+    id,
+    x: ring.x,
+    y: ring.y,
+    width: ring.width,
+    height: ring.height,
+    radius: ring.radius,
+  })
+  window.setTimeout(() => {
+    ripples.value = ripples.value.filter(r => r.id !== id)
+  }, 600)
+}
+
+function onPointerDown(e: MouseEvent) {
+  if (e.button !== 0) return
+  spawnRipple()
+  dotPressed.value = true
+}
+
+function onPointerUp() {
+  dotPressed.value = false
+}
+
 function onLeave() {
   enabled.value = false
   setActiveMagneticEl(null)
   setHoverInteractive(false)
+  dotPressed.value = false
   document.documentElement.classList.remove('cursor-fx-on')
 }
 
@@ -196,6 +227,8 @@ onMounted(() => {
   if (coarse || reduced.value) return
 
   window.addEventListener('mousemove', onMove, { passive: true })
+  window.addEventListener('mousedown', onPointerDown, { passive: true })
+  window.addEventListener('mouseup', onPointerUp, { passive: true })
   window.addEventListener('click', onClick, { capture: true })
   window.addEventListener('mouseleave', onLeave)
 
@@ -206,6 +239,8 @@ onBeforeUnmount(() => {
   cancelAnimationFrame(rafId)
 
   window.removeEventListener('mousemove', onMove)
+  window.removeEventListener('mousedown', onPointerDown)
+  window.removeEventListener('mouseup', onPointerUp)
   window.removeEventListener('click', onClick, { capture: true })
   window.removeEventListener('mouseleave', onLeave)
 
@@ -241,9 +276,26 @@ onBeforeUnmount(() => {
       <!-- dot -->
       <div
           ref="dotEl"
-          class="absolute left-0 top-0 size-1.5 rounded-full bg-accent-400 shadow-[0_0_10px_var(--color-accent-400)] opacity-0 transition-opacity duration-200 will-change-transform"
-          :class="enabled ? 'opacity-100' : ''"
-      />
+          class="absolute left-0 top-0 will-change-transform"
+      >
+        <div
+            class="cursor-dot size-1.5 rounded-full bg-accent-400 shadow-[0_0_10px_var(--color-accent-400)] opacity-0"
+            :class="[enabled ? 'opacity-100' : '', dotPressed ? 'cursor-dot--press' : '']"
+        />
+      </div>
+
+      <!-- click ripples -->
+      <div
+          v-for="r in ripples"
+          :key="r.id"
+          class="absolute left-0 top-0"
+          :style="{ transform: `translate3d(${r.x}px, ${r.y}px, 0)` }"
+      >
+        <div
+            class="cursor-ripple border border-accent-400/30"
+            :style="{ width: `${r.width}px`, height: `${r.height}px`, borderRadius: `${r.radius}px` }"
+        />
+      </div>
     </div>
   </ClientOnly>
 </template>
@@ -258,5 +310,34 @@ onBeforeUnmount(() => {
 .cursor-ring--interactive {
   width: 52px;
   height: 52px;
+}
+
+.cursor-dot {
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  transition: opacity 200ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1), filter 220ms ease;
+}
+
+.cursor-dot--press {
+  transform: translate(-50%, -50%) scale(0.2);
+  filter: blur(1px) brightness(0.6);
+}
+
+.cursor-ripple {
+  transform-origin: center;
+  animation: cursor-ripple 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes cursor-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
 }
 </style>
