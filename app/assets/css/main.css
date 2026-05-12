@@ -16,10 +16,67 @@
   --color-ink-900: #0c0a09;
   --color-ink-950: #060504;
 
-  --color-accent-300: #86efac;
-  --color-accent-400: #4ade80;
-  --color-accent-500: #22c55e;
-  --color-accent-600: #16a34a;
+  --color-main-200: #bbf7d0;
+  --color-main-300: #86efac;
+  --color-main-400: #4ade80;
+  --color-main-500: #22c55e;
+  --color-main-600: #16a34a;
+}
+
+:root {
+  --bg-tint-1: rgba(34, 197, 94, 0.06);
+  --bg-tint-2: rgba(120, 113, 108, 0.08);
+  --grid-line: rgba(255, 255, 255, 0.07);
+  --grid-glow: rgba(74, 222, 128, 0.13);
+  --dot-bg: rgba(255, 255, 255, 0.06);
+  --cursor-glow: rgba(34, 197, 94, 0.09);
+  --main-shadow: rgba(34, 197, 94, 0.4);
+  --link-underline: rgba(34, 197, 94, 0.4);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* reverse ink scale: dark text on light bg */
+    --color-ink-50:  #060504;
+    --color-ink-100: #0c0a09;
+    --color-ink-200: #1c1917;
+    --color-ink-300: #292524;
+    --color-ink-400: #44403c;
+    --color-ink-500: #57534e;
+    --color-ink-600: #78716c;
+    --color-ink-700: #a8a29e;
+    --color-ink-800: #d6d3d1;
+    --color-ink-900: #e7e5e4;
+    --color-ink-950: #f5f5f4;
+
+    /* violet accent — shifted darker so text/icons contrast on light bg */
+    --color-main-200: #8b5cf6; /* violet-500 */
+    --color-main-300: #7c3aed; /* violet-600 */
+    --color-main-400: #6d28d9; /* violet-700 */
+    --color-main-500: #5b21b6; /* violet-800 */
+    --color-main-600: #4c1d95; /* violet-900 */
+
+    --bg-tint-1: rgba(124, 58, 237, 0.06);
+    --bg-tint-2: rgba(120, 113, 108, 0.06);
+    --grid-line: rgba(0, 0, 0, 0.06);
+    --grid-glow: rgba(124, 58, 237, 0.18);
+    --dot-bg: rgba(0, 0, 0, 0.06);
+    --cursor-glow: rgba(109, 40, 217, 0.12);
+    --main-shadow: rgba(91, 33, 182, 0.45);
+    --link-underline: rgba(91, 33, 182, 0.5);
+    --warn-shadow: rgba(180, 83, 9, 0.45);
+
+    /* darken amber text shades so they stay readable on light bg */
+    --color-amber-100: #78350f; /* amber-900 */
+    --color-amber-200: #92400e; /* amber-800 */
+    --color-amber-300: #b45309; /* amber-700 */
+    --color-amber-400: #b45309;
+    --color-amber-500: #d97706; /* keep amber-600 for tints */
+  }
+}
+
+:root {
+  --warn-shadow: rgba(245, 158, 11, 0.7);
 }
 
 @layer base {
@@ -40,14 +97,14 @@
 
   body {
     background:
-      radial-gradient(60rem 40rem at 80% -10%, rgba(34, 197, 94, 0.06), transparent 60%),
-      radial-gradient(40rem 30rem at -10% 110%, rgba(120, 113, 108, 0.08), transparent 60%),
+      radial-gradient(60rem 40rem at 80% -10%, var(--bg-tint-1), transparent 60%),
+      radial-gradient(40rem 30rem at -10% 110%, var(--bg-tint-2), transparent 60%),
       var(--color-ink-950);
     min-height: 100svh;
   }
 
   ::selection {
-    background: var(--color-accent-500);
+    background: var(--color-main-500);
     color: var(--color-ink-950);
   }
 
@@ -64,7 +121,7 @@
   }
 
   *:focus-visible {
-    outline: 2px solid var(--color-accent-500);
+    outline: 2px solid var(--color-main-500);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -72,15 +129,15 @@
 
 @utility grid-bg {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 @utility cursor-grid-glow {
   background-image:
-    linear-gradient(to right, rgba(74, 222, 128, 0.13) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(74, 222, 128, 0.13) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-glow) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-glow) 1px, transparent 1px);
   background-size: 48px 48px;
   opacity: 0;
   mask-image:
@@ -99,7 +156,7 @@ html.cursor-fx-on .cursor-grid-glow {
 }
 
 @utility dot-bg {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(var(--dot-bg) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -125,12 +182,12 @@ html.cursor-fx-on .cursor-grid-glow {
 .prose-writing h2 { font-size: 1.2em; }
 .prose-writing h3 { font-size: 1.05em; }
 .prose-writing a {
-  color: var(--color-accent-400);
+  color: var(--color-main-400);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(34, 197, 94, 0.4);
+  text-decoration-color: var(--link-underline);
 }
-.prose-writing a:hover { text-decoration-color: var(--color-accent-400); }
+.prose-writing a:hover { text-decoration-color: var(--color-main-400); }
 .prose-writing code {
   font-family: var(--font-mono);
   font-size: 0.85em;
@@ -141,7 +198,7 @@ html.cursor-fx-on .cursor-grid-glow {
 }
 .prose-writing pre {
   background: var(--color-ink-950);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-ink-800);
   border-radius: 10px;
   padding: 1em 1.1em;
   overflow-x: auto;
@@ -156,7 +213,7 @@ html.cursor-fx-on .cursor-grid-glow {
   color: var(--color-ink-200);
 }
 .prose-writing blockquote {
-  border-left: 2px solid var(--color-accent-500);
+  border-left: 2px solid var(--color-main-500);
   padding-left: 1em;
   color: var(--color-ink-300);
   font-style: italic;

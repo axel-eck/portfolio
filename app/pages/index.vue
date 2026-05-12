@@ -209,8 +209,8 @@ watch(cvHref, async (href) => {
             class="inline-flex items-center gap-2 rounded-full border border-ink-700/70 bg-ink-900/60 px-3 py-1 font-mono text-xs text-ink-300 backdrop-blur"
           >
             <span class="relative flex size-1.5">
-              <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent-400 opacity-75" />
-              <span class="relative inline-flex size-1.5 rounded-full bg-accent-500" />
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-main-400 opacity-75" />
+              <span class="relative inline-flex size-1.5 rounded-full bg-main-500" />
             </span>
             {{ $t('hero.status') }}
           </Motion>
@@ -229,7 +229,7 @@ watch(cvHref, async (href) => {
             :transition="{ duration: 0.5, delay: 0.15 }"
             class="mt-3 flex items-center gap-3 font-mono text-sm text-ink-300"
           >
-            <Icon name="lucide:terminal" class="size-3.5 text-accent-400" />
+            <Icon name="lucide:terminal" class="size-3.5 text-main-400" />
             <span>{{ $t('hero.roles') }}</span>
           </Motion>
 
@@ -257,7 +257,7 @@ watch(cvHref, async (href) => {
             <a
               v-magnetic="{ strength: 0.54, radius: 110 }"
               href="#contact"
-              class="group col-span-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-4 py-2.5 text-sm font-medium text-ink-950 transition hover:bg-accent-400 data-[magnetic-active=true]:bg-accent-400 sm:col-span-1 sm:px-5"
+              class="group col-span-2 inline-flex items-center justify-center gap-2 rounded-full bg-main-500 px-4 py-2.5 text-sm font-medium text-ink-950 transition hover:bg-main-400 data-[magnetic-active=true]:bg-main-400 sm:col-span-1 sm:px-5"
             >
               {{ $t('hero.cta_contact') }}
               <Icon name="lucide:arrow-right" class="size-4 transition group-hover:translate-x-0.5" />
@@ -309,7 +309,7 @@ watch(cvHref, async (href) => {
           >
             <div class="flex items-center justify-between border-b border-ink-800/80 pb-3 font-mono text-[10px] text-ink-400">
               <span class="flex items-center gap-1.5">
-                <Icon name="lucide:activity" class="size-3 text-accent-400" />
+                <Icon name="lucide:activity" class="size-3 text-main-400" />
                 {{ $t('about.panels.prod.title') }}
               </span>
               <span class="text-ink-500">{{ $t('about.panels.prod.range') }}</span>
@@ -318,12 +318,12 @@ watch(cvHref, async (href) => {
               <li v-for="svc in ['api', 'web', 'postgres', 'ingress']" :key="svc" class="flex items-center justify-between">
                 <span class="flex items-center gap-2 text-ink-200">
                   <span class="relative flex size-1.5">
-                    <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent-400 opacity-60" />
-                    <span class="relative inline-flex size-1.5 rounded-full bg-accent-500" />
+                    <span class="absolute inline-flex size-full animate-ping rounded-full bg-main-400 opacity-60" />
+                    <span class="relative inline-flex size-1.5 rounded-full bg-main-500" />
                   </span>
                   {{ svc }}
                 </span>
-                <span class="text-accent-400">{{ $t('about.panels.prod.healthy') }}</span>
+                <span class="text-main-400">{{ $t('about.panels.prod.healthy') }}</span>
               </li>
             </ul>
             <!-- mini sparkline -->
@@ -332,13 +332,13 @@ watch(cvHref, async (href) => {
                 <span
                   v-for="(h, idx) in [40, 55, 48, 70, 62, 75, 80, 72, 88, 84, 92, 90, 95, 98, 96, 99]"
                   :key="idx"
-                  class="flex-1 rounded-sm bg-accent-500/40"
+                  class="flex-1 rounded-sm bg-main-500/40"
                   :style="{ height: `${h}%` }"
                 />
               </div>
               <div class="mt-2 flex items-center justify-between font-mono text-[10px] text-ink-500">
                 <span>{{ $t('about.panels.prod.uptime') }}</span>
-                <span class="text-accent-400">99.98%</span>
+                <span class="text-main-400">99.98%</span>
               </div>
             </div>
             <p class="mt-5 text-sm leading-relaxed text-ink-300">{{ $t('about.p1') }}</p>
@@ -352,7 +352,7 @@ watch(cvHref, async (href) => {
           >
             <div class="flex items-center justify-between border-b border-ink-800/80 pb-3 font-mono text-[10px] text-ink-400">
               <span class="flex items-center gap-1.5">
-                <Icon name="lucide:flask-conical" class="size-3 text-accent-400" />
+                <Icon name="lucide:flask-conical" class="size-3 text-main-400" />
                 {{ $t('about.panels.research.title') }}
               </span>
               <span class="text-ink-500">dispatch.rs</span>
@@ -382,17 +382,17 @@ watch(cvHref, async (href) => {
           >
             <div class="flex items-center justify-between border-b border-ink-800/80 pb-3 font-mono text-[10px] text-ink-400">
               <span class="flex items-center gap-1.5">
-                <Icon name="lucide:calendar-check" class="size-3 text-accent-400" />
+                <Icon name="lucide:calendar-check" class="size-3 text-main-400" />
                 {{ $t('about.avail.label') }}
               </span>
-              <span class="text-accent-400">{{ $t('about.avail.open') }}</span>
+              <span class="text-main-400">{{ $t('about.avail.open') }}</span>
             </div>
 
             <!-- big date chip -->
             <div class="mt-4 rounded-xl bg-ink-950/80 p-4 ring-1 ring-inset ring-ink-800/80">
               <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">{{ $t('about.avail.starting') }}</p>
               <p class="mt-1 font-semibold text-2xl text-ink-50">{{ $t('about.avail.date') }}</p>
-              <p class="mt-1 font-mono text-[11px] text-accent-400">{{ $t('about.avail.subtitle') }}</p>
+              <p class="mt-1 font-mono text-[11px] text-main-400">{{ $t('about.avail.subtitle') }}</p>
             </div>
 
             <!-- week grid -->
@@ -412,14 +412,14 @@ watch(cvHref, async (href) => {
                   :key="idx"
                   :class="[
                     'flex aspect-square items-center justify-center rounded-md font-mono text-[10px] ring-1 ring-inset',
-                    d.k === 'co'  && 'bg-accent-500/15 text-accent-300 ring-accent-500/30',
+                    d.k === 'co'  && 'bg-main-500/15 text-main-300 ring-main-500/30',
                     d.k === 'ed'  && 'bg-amber-500/15 text-amber-300 ring-amber-500/30',
                     d.k === 'off' && 'bg-ink-800/60 text-ink-500 ring-ink-700/60',
                   ]"
                 >{{ d.l }}</div>
               </div>
               <p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] text-ink-500">
-                <span class="flex items-center gap-1"><span class="size-2 rounded-sm bg-accent-500/60" /> {{ $t('about.avail.company') }}</span>
+                <span class="flex items-center gap-1"><span class="size-2 rounded-sm bg-main-500/60" /> {{ $t('about.avail.company') }}</span>
                 <span class="flex items-center gap-1"><span class="size-2 rounded-sm bg-amber-500/60" /> {{ $t('about.avail.eventdeer') }}</span>
                 <span class="flex items-center gap-1"><span class="size-2 rounded-sm bg-ink-700" /> {{ $t('about.avail.off') }}</span>
               </p>
@@ -474,7 +474,7 @@ watch(cvHref, async (href) => {
             <button
               v-magnetic="{ strength: 0.5, radius: 80 }"
               type="button"
-              class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-accent-400 hover:text-accent-300 data-[magnetic-active=true]:text-accent-300"
+              class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-main-400 hover:text-main-300 data-[magnetic-active=true]:text-main-300"
               @click="openProject = openProject === p ? null : p"
             >
               <Icon
@@ -502,7 +502,7 @@ watch(cvHref, async (href) => {
             </Transition>
 
             <span
-              class="pointer-events-none absolute -right-12 -top-12 size-40 rounded-full bg-accent-500/0 blur-3xl transition-colors duration-500 group-hover:bg-accent-500/10"
+              class="pointer-events-none absolute -right-12 -top-12 size-40 rounded-full bg-main-500/0 blur-3xl transition-colors duration-500 group-hover:bg-main-500/10"
             />
           </Motion>
         </div>
@@ -520,7 +520,7 @@ watch(cvHref, async (href) => {
             class="flex flex-col gap-4 bg-ink-950/80 p-6"
           >
             <div>
-              <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-accent-400">
+              <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-main-400">
                 {{ $t(`stack.groups.${key}`) }}
               </p>
               <p class="mt-2 text-sm text-ink-400">{{ $t(`stack.labels.${key}`) }}</p>
@@ -548,7 +548,7 @@ watch(cvHref, async (href) => {
         <div class="grid gap-x-10 gap-y-12 md:grid-cols-2">
           <!-- school -->
           <div>
-            <div class="mb-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-accent-400">
+            <div class="mb-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-main-400">
               <Icon name="lucide:graduation-cap" class="size-3.5" />
               {{ $t('path.track_school') }}
             </div>
@@ -563,7 +563,7 @@ watch(cvHref, async (href) => {
                 as="li"
                 class="relative"
               >
-                <span class="absolute -left-9.25 top-1.5 size-3 rounded-full bg-ink-900 ring-2 ring-accent-500/70 shadow-[0_0_12px_var(--color-accent-500)]" />
+                <span class="absolute -left-9.25 top-1.5 size-3 rounded-full bg-ink-900 ring-2 ring-main-500/70 shadow-[0_0_12px_var(--color-main-500)]" />
                 <p class="font-mono text-xs text-ink-400">{{ $t(`path.items.${item}.period`) }} · {{ $t(`path.items.${item}.place`) }}</p>
                 <h3 class="mt-1 text-lg font-medium text-ink-50">{{ $t(`path.items.${item}.title`) }}</h3>
                 <p class="mt-1 text-sm text-ink-400">{{ $t(`path.items.${item}.detail`) }}</p>
@@ -597,7 +597,7 @@ watch(cvHref, async (href) => {
                 </span>
                 <span
                   v-else
-                  class="absolute -left-9.25 top-1.5 size-3 rounded-full bg-ink-900 ring-2 ring-amber-500/70 shadow-[0_0_12px_rgba(245,158,11,0.7)]"
+                  class="absolute -left-9.25 top-1.5 size-3 rounded-full bg-ink-900 ring-2 ring-amber-500/70 shadow-[0_0_12px_var(--warn-shadow)]"
                 />
 
                 <template v-if="item === 'next'">
@@ -664,7 +664,7 @@ watch(cvHref, async (href) => {
               class="group relative flex flex-col gap-3 bg-ink-950/40 p-5 transition hover:bg-ink-900/40"
             >
               <div class="flex items-start justify-between">
-                <div class="flex size-10 items-center justify-center rounded-lg bg-ink-800/80 text-accent-300 ring-1 ring-inset ring-ink-700/60 transition group-hover:bg-accent-500/15 group-hover:ring-accent-500/30">
+                <div class="flex size-10 items-center justify-center rounded-lg bg-ink-800/80 text-main-300 ring-1 ring-inset ring-ink-700/60 transition group-hover:bg-main-500/15 group-hover:ring-main-500/30">
                   <svg
                     v-if="h.icon === 'checkered-flag'"
                     viewBox="0 0 24 24"
@@ -693,7 +693,7 @@ watch(cvHref, async (href) => {
 
               <div>
                 <p class="flex items-baseline gap-1.5 font-mono text-[11px] text-ink-500">
-                  <span class="text-accent-500">›</span>
+                  <span class="text-main-500">›</span>
                   <span class="truncate text-ink-100">{{ $t(`hobbies.items.${h.id}.label`) }}</span>
                 </p>
                 <p class="mt-1.5 font-mono text-[10.5px] leading-relaxed text-ink-400">
@@ -705,7 +705,7 @@ watch(cvHref, async (href) => {
           </div>
 
           <div class="border-t border-ink-800/80 bg-ink-900/40 px-4 py-2 font-mono text-[10px] text-ink-500">
-            <span class="text-accent-400">{{ $t('hobbies.terminal.count', { count: hobbies.length }) }}</span>
+            <span class="text-main-400">{{ $t('hobbies.terminal.count', { count: hobbies.length }) }}</span>
             · {{ $t('hobbies.terminal.last_touched') }}
             <span class="text-ink-400">{{ $t('hobbies.terminal.today') }}</span>
           </div>
@@ -733,7 +733,7 @@ watch(cvHref, async (href) => {
               @click="openWriting = openWriting === w.slug ? null : w.slug"
             >
               <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 class="text-lg font-medium text-ink-50 group-hover:text-accent-300 transition-colors">
+                <h3 class="text-lg font-medium text-ink-50 group-hover:text-main-300 transition-colors">
                   {{ w.title }}
                 </h3>
                 <span class="font-mono text-xs text-ink-500">{{ w.date }}</span>
@@ -745,7 +745,7 @@ watch(cvHref, async (href) => {
                   :key="tag"
                   class="rounded-md bg-ink-800 px-2 py-0.5 font-mono text-[10px] text-ink-300 ring-1 ring-inset ring-ink-700"
                 >#{{ tag }}</span>
-                <span class="ml-auto inline-flex items-center gap-1 font-mono text-[11px] text-accent-400">
+                <span class="ml-auto inline-flex items-center gap-1 font-mono text-[11px] text-main-400">
                   <Icon
                     :name="openWriting === w.slug ? 'lucide:chevron-down' : 'lucide:chevron-right'"
                     class="size-3.5"
@@ -781,7 +781,7 @@ watch(cvHref, async (href) => {
           <a
             v-magnetic="{ strength: 0.54, radius: 110 }"
             href="mailto:axel.eckenberg@yahoo.fr"
-            class="group inline-flex items-center gap-2 rounded-full bg-accent-500 px-5 py-2.5 text-sm font-medium text-ink-950 transition hover:bg-accent-400 data-[magnetic-active=true]:bg-accent-400"
+            class="group inline-flex items-center gap-2 rounded-full bg-main-500 px-5 py-2.5 text-sm font-medium text-ink-950 transition hover:bg-main-400 data-[magnetic-active=true]:bg-main-400"
           >
             <Icon name="lucide:mail" class="size-4" />
             {{ $t('contact.email') }}

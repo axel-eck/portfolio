@@ -15,7 +15,7 @@ function toggle() {
     @click="toggle"
   >
     <span
-      class="absolute inset-y-0.5 w-8 rounded-full bg-accent-500/90 transition-transform duration-300 sm:w-9"
+      class="absolute inset-y-0.5 w-8 rounded-full bg-main-500/90 transition-transform duration-300 sm:w-9"
       :class="locale === 'en' ? 'translate-x-8 sm:translate-x-9' : 'translate-x-0'"
     />
     <span

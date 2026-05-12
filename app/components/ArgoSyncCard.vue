@@ -52,7 +52,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
     <div class="flex items-center justify-between gap-2 border-b border-ink-800/80 pb-3 sm:gap-3 sm:pb-4">
       <div class="flex min-w-0 items-center gap-2.5">
         <div class="flex size-7 shrink-0 items-center justify-center rounded-lg bg-ink-800 ring-1 ring-inset ring-ink-700/60 sm:size-8">
-          <Icon name="lucide:infinity" class="size-3.5 text-accent-400 sm:size-4" />
+          <Icon name="lucide:infinity" class="size-3.5 text-main-400 sm:size-4" />
         </div>
         <div class="min-w-0">
           <p class="truncate font-mono text-[13px] text-ink-100">{{ $t('hero.argo.title') }}</p>
@@ -70,9 +70,9 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
           <span
             v-if="allDone"
             key="synced"
-            class="inline-flex items-center gap-1.5 rounded-full bg-accent-500/10 px-1.5 py-1 font-mono text-[9px] font-medium text-accent-300 ring-1 ring-inset ring-accent-500/30 sm:px-2 sm:text-[10px]"
+            class="inline-flex items-center gap-1.5 rounded-full bg-main-500/10 px-1.5 py-1 font-mono text-[9px] font-medium text-main-300 ring-1 ring-inset ring-main-500/30 sm:px-2 sm:text-[10px]"
           >
-            <span class="size-1.5 rounded-full bg-accent-500" />
+            <span class="size-1.5 rounded-full bg-main-500" />
             {{ $t('hero.argo.synced') }}
           </span>
           <span
@@ -86,7 +86,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
         </Transition>
         <span
           class="hidden sm:inline-flex items-center rounded-full px-2 py-1 font-mono text-[10px] ring-1 ring-inset transition-colors duration-500"
-          :class="allDone ? 'bg-accent-500/10 text-accent-300 ring-accent-500/30' : 'bg-ink-800 text-ink-400 ring-ink-700'"
+          :class="allDone ? 'bg-main-500/10 text-main-300 ring-main-500/30' : 'bg-ink-800 text-ink-400 ring-ink-700'"
         >
           {{ $t('hero.argo.healthy') }}
         </span>
@@ -103,8 +103,8 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
               :class="[
                 'relative flex size-10 items-center justify-center rounded-xl ring-1 ring-inset transition-all duration-500 sm:size-12',
                 stageStates[i] === 'pending' && 'bg-ink-900/60 text-amber-400/50 ring-amber-500/20',
-                stageStates[i] === 'active'  && 'bg-accent-500/15 text-accent-200 ring-accent-500/60 shadow-[0_0_30px_-5px_var(--color-accent-500)] scale-[1.06]',
-                stageStates[i] === 'done'    && 'bg-accent-500/10 text-accent-300 ring-accent-500/40',
+                stageStates[i] === 'active'  && 'bg-main-500/15 text-main-200 ring-main-500/60 shadow-[0_0_30px_-5px_var(--color-main-500)] scale-[1.06]',
+                stageStates[i] === 'done'    && 'bg-main-500/10 text-main-300 ring-main-500/40',
               ]"
             >
               <Icon
@@ -119,8 +119,8 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
                 v-if="stageStates[i] === 'active'"
                 class="absolute -right-1 -top-1 flex size-2.5"
               >
-                <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent-400 opacity-75" />
-                <span class="relative inline-flex size-2.5 rounded-full bg-accent-500" />
+                <span class="absolute inline-flex size-full animate-ping rounded-full bg-main-400 opacity-75" />
+                <span class="relative inline-flex size-2.5 rounded-full bg-main-500" />
               </span>
               <!-- done indicator: tiny matching square chip at bottom-right -->
               <Transition
@@ -130,7 +130,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
               >
                 <span
                   v-if="stageStates[i] === 'done'"
-                  class="absolute -bottom-1 -right-1 flex size-4.5 items-center justify-center rounded-md bg-accent-500/90 p-0.5 text-ink-950 ring-1 ring-inset ring-accent-400 shadow-[0_2px_8px_rgba(34,197,94,0.4)]"
+                  class="absolute -bottom-1 -right-1 flex size-4.5 items-center justify-center rounded-md bg-main-500/90 p-0.5 text-ink-950 ring-1 ring-inset ring-main-400 shadow-[0_2px_8px_var(--main-shadow)]"
                 >
                   <Icon name="lucide:check" class="size-2" stroke-width="3.5" />
                 </span>
@@ -164,7 +164,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
             <span class="absolute inset-0 rounded-full bg-ink-700/70" />
             <div
               :class="[
-                'absolute inset-0 origin-left rounded-full bg-linear-to-r from-accent-500 via-accent-400 to-accent-500 shadow-[0_0_10px_var(--color-accent-500)]',
+                'absolute inset-0 origin-left rounded-full bg-linear-to-r from-main-500 via-main-400 to-main-500 shadow-[0_0_10px_var(--color-main-500)]',
                 lineStates[i] === 'pending' && 'scale-x-0 transition-transform duration-300',
                 lineStates[i] === 'filling' && 'scale-x-100 transition-transform duration-1100 ease-linear',
                 lineStates[i] === 'done'    && 'scale-x-100',
@@ -173,7 +173,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
             <span
               :class="[
                 'absolute -right-1.25 top-1/2 -translate-y-1/2 border-y-4 border-l-[6px] border-y-transparent transition-colors duration-300',
-                lineStates[i] === 'done' ? 'border-l-accent-500' : 'border-l-ink-700',
+                lineStates[i] === 'done' ? 'border-l-main-500' : 'border-l-ink-700',
               ]"
             />
           </div>

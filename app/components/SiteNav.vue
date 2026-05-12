@@ -22,7 +22,7 @@ const links = computed(() => [
         href="#top"
         class="hidden sm:flex items-center gap-2 px-3 py-1.5 font-mono text-xs text-ink-300 transition hover:text-ink-50 data-[magnetic-active=true]:text-ink-50"
       >
-        <span class="size-1.5 rounded-full bg-accent-500 shadow-[0_0_10px_var(--color-accent-500)]" />
+        <span class="size-1.5 rounded-full bg-main-500 shadow-[0_0_10px_var(--color-main-500)]" />
         axel
       </a>
       <div class="hidden sm:block h-5 w-px bg-ink-700/70" />

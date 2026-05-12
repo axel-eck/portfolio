@@ -283,13 +283,13 @@ onBeforeUnmount(() => {
           ref="glowEl"
           class="absolute left-0 top-0 size-40 rounded-full opacity-0 transition-opacity duration-500 will-change-transform"
           :class="enabled ? 'opacity-70' : ''"
-          style="background: radial-gradient(closest-side, rgba(34, 197, 94, 0.09), rgba(34, 197, 94, 0) 72%); filter: blur(10px);"
+          style="background: radial-gradient(closest-side, var(--cursor-glow), transparent 72%); filter: blur(10px);"
       />
 
       <!-- ring -->
       <div
           ref="ringEl"
-          class="cursor-ring absolute left-0 top-0 rounded-full border border-accent-400/70 opacity-0 will-change-transform"
+          class="cursor-ring absolute left-0 top-0 rounded-full border border-main-400/70 opacity-0 will-change-transform"
           :class="enabled ? 'opacity-100' : ''"
       />
 
@@ -299,7 +299,7 @@ onBeforeUnmount(() => {
           class="absolute left-0 top-0 will-change-transform"
       >
         <div
-            class="cursor-dot size-1.5 rounded-full bg-accent-400 shadow-[0_0_10px_var(--color-accent-400)] opacity-0"
+            class="cursor-dot size-1.5 rounded-full bg-main-400 shadow-[0_0_10px_var(--color-main-400)] opacity-0"
             :class="[enabled ? 'opacity-100' : '', dotPressed ? 'cursor-dot--press' : '']"
         />
       </div>
@@ -312,7 +312,7 @@ onBeforeUnmount(() => {
           :style="{ transform: `translate3d(${r.x}px, ${r.y}px, 0)` }"
       >
         <div
-            class="cursor-ripple border border-accent-400/30"
+            class="cursor-ripple border border-main-400/30"
             :style="{ width: `${r.width}px`, height: `${r.height}px`, borderRadius: `${r.radius}px` }"
         />
       </div>
