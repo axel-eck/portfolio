@@ -230,6 +230,11 @@
       "today": "today"
     }
   },
+  "quotes": {
+    "kicker": "Words from the field",
+    "title": "What people say",
+    "subtitle": "Notes from people I've worked with."
+  },
   "writings": {
     "kicker": "Writing",
     "title": "A few published notes",

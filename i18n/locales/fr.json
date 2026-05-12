@@ -230,6 +230,11 @@
       "today": "aujourd'hui"
     }
   },
+  "quotes": {
+    "kicker": "Paroles du terrain",
+    "title": "Ce qu'on dit de moi",
+    "subtitle": "Quelques mots de personnes avec qui j'ai travaillé."
+  },
   "writings": {
     "kicker": "Écrits",
     "title": "Quelques notes publiées",

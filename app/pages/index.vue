@@ -148,6 +148,54 @@ function loadWritings(localeCode: string): Writing[] {
 const writings = computed(() => loadWritings(locale.value))
 const openWriting = ref<string | null>(null)
 
+interface Quote {
+  slug: string
+  entreprise: string
+  entrepriseLogo: string
+  entrepriseLink: string
+  personName: string
+  personRole: string
+  personLink: string
+  personAvatar: string
+  period: string
+  date: string
+  html: string
+}
+
+const quoteSources = import.meta.glob('../../content/quotes/**/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
+
+function loadQuotes(localeCode: string): Quote[] {
+  const quoteLocale: WritingLocale = localeCode === 'en' ? 'en' : 'fr'
+
+  return Object.entries(quoteSources)
+    .filter(([path]) => path.includes(`/content/quotes/${quoteLocale}/`))
+    .map(([path, raw]) => {
+      const name = path.split('/').pop() ?? ''
+      const { meta, body } = parseHeader(raw)
+
+      return {
+        slug: name.replace(/\.md$/, ''),
+        entreprise: meta.entreprise ?? '',
+        entrepriseLogo: meta.entreprise_logo_link ?? '',
+        entrepriseLink: meta.entreprise_link ?? '',
+        personName: meta.person_name ?? '',
+        personRole: meta.person_role ?? '',
+        personLink: meta.person_link ?? '',
+        personAvatar: meta.person_avatar_link ?? '',
+        period: meta.period ?? '',
+        date: meta.date ?? '',
+        html: marked.parse(body, { gfm: true, breaks: false, async: false }) as string,
+      }
+    })
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+}
+
+const quotes = computed(() => loadQuotes(locale.value))
+
 const projects = ['eventdeer', 'kent', 'lucca', 'freelance'] as const
 const pathSchool = ['kent', 'epitech', 'cmi'] as const
 const pathWork = ['next', 'eventdeer', 'lucca', 'freelance'] as const
@@ -576,7 +624,7 @@ watch(cvHref, async (href) => {
 
     <!-- PATH -->
     <section class="relative border-t border-ink-800/60 bg-ink-950/40 px-6 py-24 sm:py-32">
-      <div class="mx-auto max-w-5xl">
+      <div class="mx-auto max-w-6xl">
         <Kicker id="path" :eyebrow="$t('path.kicker')" :title="$t('path.title')" />
 
         <div class="grid gap-x-10 gap-y-12 md:grid-cols-2">
@@ -665,6 +713,99 @@ watch(cvHref, async (href) => {
       </div>
     </section>
 
+    <!-- QUOTES -->
+    <section v-if="quotes.length" class="relative px-6 py-24 sm:py-32">
+      <div class="mx-auto max-w-6xl">
+        <Kicker
+          id="quotes"
+          :eyebrow="$t('quotes.kicker')"
+          :title="$t('quotes.title')"
+          :subtitle="$t('quotes.subtitle')"
+        />
+        <div class="grid gap-5 sm:grid-cols-2">
+          <Motion
+            v-for="(q, i) in quotes"
+            :key="q.slug"
+            :initial="{ opacity: 0, y: 24 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :in-view-options="{ once: true, margin: '-60px' }"
+            :transition="{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }"
+            class="relative flex flex-col overflow-hidden rounded-2xl border border-ink-800/80 bg-ink-900/60 p-6"
+          >
+            <Icon
+              name="lucide:quote"
+              class="absolute right-5 top-5 size-8 -scale-x-100 text-ink-800"
+            />
+
+            <div class="flex items-center gap-3">
+              <img
+                v-if="q.personAvatar"
+                :src="q.personAvatar"
+                :alt="q.personName"
+                width="48"
+                height="48"
+                loading="lazy"
+                class="size-12 shrink-0 rounded-full object-cover ring-1 ring-inset ring-ink-700/60"
+              >
+              <div class="min-w-0">
+                <p class="truncate text-sm font-medium text-ink-50">
+                  <a
+                    v-if="q.personLink"
+                    v-magnetic="{ strength: 0.25, radius: 60, shape: 'underline' }"
+                    :href="q.personLink"
+                    target="_blank"
+                    rel="noopener"
+                    class="hover:text-main-300"
+                  >{{ q.personName }}</a>
+                  <span
+                    v-else
+                    v-magnetic="{ strength: 0.2, radius: 50, shape: 'underline' }"
+                  >{{ q.personName }}</span>
+                </p>
+                <p class="truncate font-mono text-[11px] text-ink-400">
+                  {{ q.personRole }}<span v-if="q.personRole && q.entreprise"> · </span>
+                  <a
+                    v-if="q.entrepriseLink"
+                    v-magnetic="{ strength: 0.25, radius: 60, shape: 'underline' }"
+                    :href="q.entrepriseLink"
+                    target="_blank"
+                    rel="noopener"
+                    class="hover:text-main-300"
+                  >{{ q.entreprise }}</a>
+                  <span
+                    v-else
+                    v-magnetic="{ strength: 0.2, radius: 50, shape: 'underline' }"
+                  >{{ q.entreprise }}</span>
+                </p>
+              </div>
+              <img
+                v-if="q.entrepriseLogo"
+                :src="q.entrepriseLogo"
+                :alt="q.entreprise"
+                width="28"
+                height="28"
+                loading="lazy"
+                class="ml-auto size-7 shrink-0 rounded-md bg-ink-800/80 object-contain p-1 ring-1 ring-inset ring-ink-700/60"
+              >
+            </div>
+
+            <article
+              class="prose-writing mt-5 text-[15px] leading-relaxed text-ink-200"
+              v-html="q.html"
+            />
+
+            <div class="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-ink-800/70 pt-3 font-mono text-[10px] text-ink-500">
+              <span v-if="q.period" class="inline-flex items-center gap-1">
+                <Icon name="lucide:calendar-range" class="size-3" />
+                {{ q.period }}
+              </span>
+              <span v-if="q.date">{{ q.date }}</span>
+            </div>
+          </Motion>
+        </div>
+      </div>
+    </section>
+
     <!-- HOBBIES -->
     <section class="relative px-6 py-24 sm:py-32">
       <div class="mx-auto max-w-6xl">
@@ -749,7 +890,7 @@ watch(cvHref, async (href) => {
 
     <!-- WRITINGS -->
     <section class="relative px-6 py-24 sm:py-32">
-      <div class="mx-auto max-w-3xl">
+      <div class="mx-auto max-w-6xl">
         <Kicker
           id="writings"
           :eyebrow="$t('writings.kicker')"
@@ -757,9 +898,10 @@ watch(cvHref, async (href) => {
           :subtitle="$t('writings.subtitle')"
         />
 
-        <p v-if="!writings?.length" class="font-mono text-sm text-ink-500">{{ $t('writings.empty') }}</p>
+        <div class="max-w-3xl">
+          <p v-if="!writings?.length" class="font-mono text-sm text-ink-500">{{ $t('writings.empty') }}</p>
 
-        <ul v-else class="divide-y divide-ink-800/60 border-y border-ink-800/60">
+          <ul v-else class="divide-y divide-ink-800/60 border-y border-ink-800/60">
           <li v-for="w in writings" :key="w.slug" class="py-5">
             <button
               type="button"
@@ -803,15 +945,16 @@ watch(cvHref, async (href) => {
               />
             </Transition>
           </li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section class="relative border-t border-ink-800/60 bg-ink-950/60 px-6 py-24 sm:py-32">
-      <div class="mx-auto max-w-3xl">
+      <div class="mx-auto max-w-6xl">
         <Kicker id="contact" :eyebrow="$t('contact.kicker')" :title="$t('contact.title')" :subtitle="$t('contact.blurb')" />
-        <div class="flex flex-wrap gap-3">
+        <div class="flex max-w-3xl flex-wrap gap-3">
           <a
             v-magnetic="{ strength: 0.54, radius: 110 }"
             href="mailto:axel.eckenberg@yahoo.fr"

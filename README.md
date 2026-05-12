@@ -44,6 +44,8 @@ bun run preview
 - `i18n/locales/en.json`: English copy
 - `content/writings/fr`: French markdown notes
 - `content/writings/en`: English markdown notes
+- `content/quotes/fr`: French testimonial markdown files
+- `content/quotes/en`: English testimonial markdown files
 - `public/fr/cv.pdf`: French CV
 - `public/en/cv.pdf`: English CV
 - `public/og.svg`: social preview image
@@ -69,6 +71,44 @@ Markdown body goes here.
 ```
 
 Markdown is imported at build time, so the writing system works on static hosting such as GitHub Pages.
+
+## Quotes
+
+Testimonial-style notes from past collaborators. Locale-specific, mirrors the writings layout:
+
+```text
+content/quotes/fr/jane-doe.md
+content/quotes/en/jane-doe.md
+```
+
+The section auto-hides when no markdown file exists for the active locale.
+
+Each file starts with a metadata header. All fields are optional except `Person_Name`; the card adapts when one is missing.
+
+```markdown
+Entreprise: Acme
+Entreprise_Logo_Link: https://acme.example/logo.svg
+Entreprise_Link: https://acme.example
+Person_Name: Jane Doe
+Person_Role: VP Engineering
+Person_Link: https://www.linkedin.com/in/jane-doe/
+Person_Avatar_Link: https://media.licdn.com/.../jane.jpg
+Period: 2024 Q1 — Q3
+Date: 2024-10-12
+---
+
+Markdown body holds the quote itself. Inline _emphasis_ and **bold** are supported.
+```
+
+Field roles:
+
+- `Person_Name` — required, displayed first
+- `Person_Role` — anchors authority (e.g. "CTO", "Engineering Manager")
+- `Person_Link` — external profile, makes the quote verifiable
+- `Person_Avatar_Link` — round avatar to the left of the name
+- `Entreprise`, `Entreprise_Logo_Link`, `Entreprise_Link` — company context, optional logo chip
+- `Period` — when the collaboration happened
+- `Date` — when the quote was written; used for sorting (newest first)
 
 ## CV Files
 
