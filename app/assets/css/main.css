@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink-50:  #f5f5f4;
+  --color-ink-100: #e7e5e4;
+  --color-ink-200: #d6d3d1;
+  --color-ink-300: #a8a29e;
+  --color-ink-400: #78716c;
+  --color-ink-500: #57534e;
+  --color-ink-600: #44403c;
+  --color-ink-700: #292524;
+  --color-ink-800: #1c1917;
+  --color-ink-900: #0c0a09;
+  --color-ink-950: #060504;
+
+  --color-accent-300: #86efac;
+  --color-accent-400: #4ade80;
+  --color-accent-500: #22c55e;
+  --color-accent-600: #16a34a;
+}
+
+@layer base {
+  html {
+    background: var(--color-ink-950);
+    color: var(--color-ink-100);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background:
+      radial-gradient(60rem 40rem at 80% -10%, rgba(34, 197, 94, 0.06), transparent 60%),
+      radial-gradient(40rem 30rem at -10% 110%, rgba(120, 113, 108, 0.08), transparent 60%),
+      var(--color-ink-950);
+    min-height: 100svh;
+  }
+
+  ::selection {
+    background: var(--color-accent-500);
+    color: var(--color-ink-950);
+  }
+
+  html.cursor-fx-on,
+  html.cursor-fx-on body,
+  html.cursor-fx-on a,
+  html.cursor-fx-on button,
+  html.cursor-fx-on [role="button"],
+  html.cursor-fx-on input,
+  html.cursor-fx-on textarea,
+  html.cursor-fx-on select,
+  html.cursor-fx-on label {
+    cursor: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility cursor-grid-glow {
+  background-image:
+    linear-gradient(to right, rgba(74, 222, 128, 0.13) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(74, 222, 128, 0.13) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0;
+  mask-image:
+    radial-gradient(14rem 14rem at var(--cursor-x, 50vw) var(--cursor-page-y, 0px), rgba(0, 0, 0, 0.72), transparent 72%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    radial-gradient(14rem 14rem at var(--cursor-x, 50vw) var(--cursor-page-y, 0px), rgba(0, 0, 0, 0.72), transparent 72%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-composite: source-in;
+  transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.cursor-fx-on .cursor-grid-glow {
+  opacity: 0.68;
+}
+
+@utility dot-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+.prose-writing {
+  color: var(--color-ink-200);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.prose-writing p { margin: 0.85em 0; }
+.prose-writing p:first-child { margin-top: 0; }
+.prose-writing p:last-child { margin-bottom: 0; }
+.prose-writing h1, .prose-writing h2, .prose-writing h3 {
+  color: var(--color-ink-50);
+  font-weight: 600;
+  margin: 1.4em 0 0.5em;
+  line-height: 1.3;
+}
+.prose-writing h1 { font-size: 1.4em; }
+.prose-writing h2 { font-size: 1.2em; }
+.prose-writing h3 { font-size: 1.05em; }
+.prose-writing a {
+  color: var(--color-accent-400);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(34, 197, 94, 0.4);
+}
+.prose-writing a:hover { text-decoration-color: var(--color-accent-400); }
+.prose-writing code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-ink-800);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: var(--color-ink-100);
+}
+.prose-writing pre {
+  background: var(--color-ink-950);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 1em 1.1em;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin: 1.2em 0;
+}
+.prose-writing pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  color: var(--color-ink-200);
+}
+.prose-writing blockquote {
+  border-left: 2px solid var(--color-accent-500);
+  padding-left: 1em;
+  color: var(--color-ink-300);
+  font-style: italic;
+  margin: 1.2em 0;
+}
+.prose-writing ul, .prose-writing ol { padding-left: 1.4em; margin: 0.85em 0; }
+.prose-writing li { margin: 0.3em 0; }
+.prose-writing hr {
+  border: none;
+  border-top: 1px solid var(--color-ink-800);
+  margin: 1.6em 0;
+}

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><g clip-path="url(#clip0_1_2)">
+<rect width="512" height="512" rx="100" fill="#060504"></rect>
+<line x1="-1" y1="512" x2="-0.999978" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="55.8889" y1="512" x2="55.8889" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="112.778" y1="512" x2="112.778" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="169.667" y1="512" x2="169.667" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="226.556" y1="512" x2="226.556" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="283.444" y1="512" x2="283.444" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="340.333" y1="512" x2="340.333" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="397.222" y1="512" x2="397.222" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="454.111" y1="512" x2="454.111" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="511" y1="512" x2="511" y2="-4.37113e-08" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="-1" x2="512" y2="-0.999978" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="55.8889" x2="512" y2="55.8889" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="112.778" x2="512" y2="112.778" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="169.667" x2="512" y2="169.667" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="226.556" x2="512" y2="226.556" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="283.444" x2="512" y2="283.444" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="340.333" x2="512" y2="340.333" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="397.222" x2="512" y2="397.222" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="454.111" x2="512" y2="454.111" stroke="#4ADE80" stroke-width="2"></line>
+<line x1="4.37114e-08" y1="511" x2="512" y2="511" stroke="#4ADE80" stroke-width="2"></line>
+<rect width="512" height="512" fill="url(#paint0_radial_1_2)"></rect>
+<path d="M100.512 346L165.792 166.8H206.496L272.032 346H234.144L178.848 186.256H193.44L138.144 346H100.512ZM130.72 305.808L140.192 277.904H232.352L241.824 305.808H130.72ZM284.532 346V166.8H403.06V195.728H320.372V241.04H395.38V268.944H320.372V317.072H403.06V346H284.532Z" fill="white"></path>
+</g><defs>
+<radialGradient id="paint0_radial_1_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="rotate(45) scale(724.077)">
+<stop offset="0.0001" stop-color="#060504"></stop>
+<stop offset="0.639648" stop-color="#060504"></stop>
+<stop offset="1" stop-color="#060504" stop-opacity="0"></stop>
+</radialGradient>
+<clipPath id="clip0_1_2">
+<rect width="512" height="512" rx="100" fill="white"></rect>
+</clipPath>
+</defs><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

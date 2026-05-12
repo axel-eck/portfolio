@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# CVs are downloadable from the site, but should not be indexed as standalone PDFs.
+Disallow: /fr/cv.pdf
+Disallow: /en/cv.pdf

@@ -1,0 +1,238 @@
+{
+  "seo": {
+    "title": "Axel Eckenberg — Fullstack & SRE",
+    "description": "Portfolio of Axel Eckenberg, fullstack engineer and SRE. Co-founder and CTO of EventDeer, focused on Vue, NestJS, Kubernetes and observability.",
+    "image_alt": "Profile card for Axel Eckenberg, Fullstack and SRE"
+  },
+  "a11y": {
+    "skip_content": "Skip to main content"
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "stack": "Stack",
+    "path": "Path",
+    "hobbies": "Hobbies",
+    "writings": "Writing",
+    "contact": "Contact"
+  },
+  "hero": {
+    "status": "Open to part-time internship, September 2026",
+    "name": "Axel Eckenberg",
+    "roles": "Fullstack · SRE",
+    "lede": "Engineering student (Epitech, MSc Kent). Co-founder and CTO of EventDeer.",
+    "blurb": "I build products end to end, from the database to the fibre. Vue, NestJS, Kubernetes, observability. Currently researching efficient interpreters in Rust at Kent.",
+    "cta_contact": "Get in touch",
+    "cta_cv": "View CV",
+    "argo": {
+      "title": "eventdeer / production",
+      "subtitle": "ApplicationSet · auto-sync",
+      "synced": "Synced",
+      "healthy": "Healthy",
+      "out_of_sync": "OutOfSync",
+      "synced_now": "synced just now",
+      "syncing": "syncing…",
+      "sha": "main · sha {sha}",
+      "stage_git": "Git",
+      "stage_kargo": "Kargo",
+      "stage_argo": "ArgoCD",
+      "stage_talos": "Talos / cluster",
+      "stage_git_d": "signed commits, protected branches",
+      "stage_kargo_d": "stage promotion",
+      "stage_argo_d": "continuous diff and apply",
+      "stage_talos_d": "3 control plane, 5 workers"
+    }
+  },
+  "about": {
+    "kicker": "About",
+    "title": "Building things that hold up",
+    "avail": {
+      "label": "Availability",
+      "open": "open",
+      "starting": "starting",
+      "date": "September 2026",
+      "subtitle": "part-time internship · 3 days/week",
+      "week": "typical week",
+      "company": "company",
+      "eventdeer": "EventDeer",
+      "off": "off",
+      "location_nantes": "Nantes",
+      "location_remote": "remote",
+      "days": {
+        "mon": "M",
+        "tue": "T",
+        "wed": "W",
+        "thu": "T",
+        "fri": "F",
+        "sat": "S",
+        "sun": "S"
+      }
+    },
+    "panels": {
+      "prod": {
+        "title": "eventdeer / prod",
+        "range": "last 24h",
+        "healthy": "healthy",
+        "uptime": "uptime"
+      },
+      "research": {
+        "title": "kent / research"
+      }
+    },
+    "p1": "Co-founder and CTO of EventDeer, a Vue/NestJS event management platform for student associations. Live in production, running on bare metal we operate ourselves: Talos on Proxmox, full GitOps with ArgoCD and Kargo, observability through Prometheus, Grafana, Loki, Tempo.",
+    "p2": "In parallel I'm finishing an MSc at the University of Kent. Active research project with Michael Vollmer on how Rust's language features shape efficient interpreters (indirect threaded code, dispatch). I'm designing my own minimal language for it rather than starting from an existing codebase.",
+    "p3": "Looking for a backend or platform part-time internship, 3 days a week, starting September 2026. Nantes or remote."
+  },
+  "projects": {
+    "kicker": "Projects",
+    "title": "Selected work",
+    "subtitle": "A short list, on purpose. Depth over catalogue.",
+    "more": "Details",
+    "live": "Live",
+    "code": "Code",
+    "items": {
+      "eventdeer": {
+        "role": "Co-founder · CTO",
+        "period": "2023 — present",
+        "title": "EventDeer",
+        "summary": "Event management and ticketing platform for student associations.",
+        "detail": "Vue 3 / Nuxt on the front, NestJS / Postgres on the back. Infrastructure runs on rented OVH bare-metal servers with Proxmox, Kubernetes via Talos, GitOps with ArgoCD and Kargo. Full observability with Prometheus, Grafana, Loki, Tempo. External DNS handles OVH records. In production, used by several student associations."
+      },
+      "kent": {
+        "role": "Research · supervisor Michael Vollmer",
+        "period": "2026",
+        "title": "Efficient interpreters in Rust",
+        "summary": "MSc research project on how Rust's language features shape performant interpreters.",
+        "detail": "Study centred on indirect threaded code and opcode dispatch. Designing a small dedicated language rather than extending an existing codebase, so the impact of Rust's choices (pattern matching, enums, ownership) on branch prediction and real-world performance can be isolated."
+      },
+      "lucca": {
+        "role": "Platform & Tooling intern · mentor Brian Guitteny",
+        "period": "2024",
+        "title": "Lucca",
+        "summary": "Internal tooling for product teams (TypeScript, Angular).",
+        "detail": "Worked on shared platform tools used across Lucca's product teams under Brian Guitteny's mentorship. TypeScript, Angular, continuous integration. Good school on platform debt, internal libraries, and long-term stability."
+      },
+      "freelance": {
+        "role": "Freelance",
+        "period": "2022 — 2023",
+        "title": "Java engagements",
+        "summary": "Backend Java work for independent clients.",
+        "detail": "A handful of backend Java engagements (Spring), before mostly shifting to the Node / Vue ecosystem."
+      }
+    }
+  },
+  "stack": {
+    "kicker": "Stack",
+    "title": "What I work with day to day",
+    "groups": {
+      "app": "Application",
+      "platform": "Platform",
+      "observability": "Observability",
+      "edge": "Network & DNS"
+    },
+    "labels": {
+      "app": "Application code: front, back, data schema.",
+      "platform": "Orchestration and continuous deployment.",
+      "observability": "Metrics, logs, traces.",
+      "edge": "Traffic ingress and name management."
+    }
+  },
+  "path": {
+    "kicker": "Path",
+    "title": "Timeline",
+    "track_school": "School",
+    "track_work": "Work",
+    "items": {
+      "kent": {
+        "title": "MSc, University of Kent",
+        "place": "Canterbury, UK",
+        "period": "2025 — 2026",
+        "detail": "Research project on Rust interpreters."
+      },
+      "next": {
+        "title": "Your company?",
+        "place": "Nantes or remote",
+        "period": "Sept 2026 → ?",
+        "detail": "Backend or platform part-time internship, 3 days a week. If it fits, let's talk."
+      },
+      "eventdeer": {
+        "title": "EventDeer · co-founder, CTO",
+        "place": "France · Epitech EIP",
+        "period": "2023 — present",
+        "detail": "Built the platform, the infrastructure and the technical team."
+      },
+      "lucca": {
+        "title": "Lucca · Platform & Tooling intern",
+        "place": "Nantes",
+        "period": "2024",
+        "detail": "Alongside Epitech. Platform tooling, TypeScript, Angular."
+      },
+      "epitech": {
+        "title": "Epitech · engineering programme",
+        "place": "Nantes",
+        "period": "2021 — 2026",
+        "detail": "Computer engineering degree."
+      },
+      "cmi": {
+        "title": "BSc CMI Maths · OPTIM track",
+        "place": "University of Nantes",
+        "period": "2020 — 2021",
+        "detail": "Engineering master track, optimisation option. One year before switching to Epitech."
+      },
+      "freelance": {
+        "title": "Freelance Java",
+        "place": "Remote",
+        "period": "2022 — 2023",
+        "detail": "Occasional backend engagements."
+      }
+    }
+  },
+  "hobbies": {
+    "kicker": "Hobbies",
+    "title": "Outside the editor",
+    "subtitle": "What fills the time when the keyboard rests.",
+    "items": {
+      "sailing":  { "label": "Sailing",       "stat": "catamaran · windsurf · boat license" },
+      "f1":       { "label": "Formula 1",     "stat": "Ferrari + Alpine · Monaco GP 2025 in person" },
+      "games":    { "label": "Video games",   "stat": "survival · open world · sandbox" },
+      "learning": { "label": "Learning",      "stat": "[ big nerd ] · curious about all sciences" },
+      "homelab":  { "label": "Homelab",       "stat": "proxmox · self-hosted · 24/7" },
+      "diy":      { "label": "DIY",           "stat": "wood, electronics, 3D printing" }
+    },
+    "terminal": {
+      "path": "axel{'@'}laptop : ~/hobbies",
+      "command": "$ ls -la",
+      "count": "{count} items",
+      "last_touched": "last touched",
+      "today": "today"
+    }
+  },
+  "writings": {
+    "kicker": "Writing",
+    "title": "A few published notes",
+    "subtitle": "Mostly on LinkedIn so far, in French.",
+    "empty": "Links coming soon.",
+    "read": "read",
+    "close": "close"
+  },
+  "contact": {
+    "kicker": "Contact",
+    "title": "Let's talk",
+    "blurb": "For a part-time internship, a contract, or just to chat about infra or interpreters.",
+    "email": "Send an email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "linkedin_aria": "Open Axel Eckenberg's LinkedIn profile",
+    "github_aria": "Open Axel Eckenberg's GitHub profile",
+    "cv_aria": "Download Axel Eckenberg's CV"
+  },
+  "footer": {
+    "rights": "© {year} Axel Eckenberg",
+    "built": "Built with Nuxt and too much coffee"
+  },
+  "lang": {
+    "label": "Language",
+    "fr": "FR",
+    "en": "EN"
+  }
+}
