@@ -21,7 +21,7 @@
     "tagline": "Axel — Nantes / remote",
     "name": "Axel Eckenberg",
     "roles": "Fullstack · SRE",
-    "lede": "Engineering student (Epitech, MSc Kent). Co-founder and CTO of EventDeer.",
+    "lede": "Engineering student at Epitech, currently pursuing an MSc at the University of Kent. Co-founder and CTO of EventDeer.",
     "blurb": "I build products end to end, from the database to the fibre. Vue, NestJS, Kubernetes, observability. Currently researching efficient interpreters in Rust at Kent.",
     "cta_contact": "Get in touch",
     "cta_cv": "View CV",
@@ -52,7 +52,7 @@
       "open": "open",
       "starting": "starting",
       "date": "September 2026",
-      "subtitle": "part-time internship · 3 days/week",
+      "subtitle": "part-time internship · 3 days/week · 6 months",
       "week": "typical week",
       "company": "company",
       "eventdeer": "EventDeer",
@@ -80,9 +80,9 @@
         "title": "kent / research"
       }
     },
-    "p1": "Co-founder and CTO of EventDeer, a Vue/NestJS event management platform for student associations. Live in production, running on bare metal we operate ourselves: Talos on Proxmox, full GitOps with ArgoCD and Kargo, observability through Prometheus, Grafana, Loki, Tempo.",
+    "p1": "Co-founder and CTO of EventDeer, a Vue/NestJS event management platform for student associations. Live in production, running on bare metal we operate ourselves: Talos on Proxmox, full GitOps with ArgoCD and Kargo, secrets managed with OpenBao, observability through Prometheus, Grafana, Loki and Tempo.",
     "p2": "In parallel I'm finishing an MSc at the University of Kent. Active research project with Michael Vollmer on how Rust's language features shape efficient interpreters (indirect threaded code, dispatch). I'm designing my own minimal language for it rather than starting from an existing codebase.",
-    "p3": "Looking for a backend or platform part-time internship, 3 days a week, starting September 2026. Nantes or remote."
+    "p3": "Looking for a backend or platform part-time internship, 3 days a week for 6 months, starting September 2026. Nantes or remote."
   },
   "projects": {
     "kicker": "Projects",
@@ -97,7 +97,7 @@
         "period": "2023 — present",
         "title": "EventDeer",
         "summary": "Event management and ticketing platform for student associations.",
-        "detail": "Vue 3 / Nuxt on the front, NestJS / Postgres on the back. Infrastructure runs on rented OVH bare-metal servers with Proxmox, Kubernetes via Talos, GitOps with ArgoCD and Kargo. Full observability with Prometheus, Grafana, Loki, Tempo. External DNS handles OVH records. In production, used by several student associations."
+        "detail": "Vue 3 / Nuxt on the front, NestJS / Postgres on the back. Infrastructure runs on rented OVH bare-metal servers with Proxmox, Kubernetes via Talos, GitOps with ArgoCD and Kargo, and secrets managed with OpenBao. Full observability with Prometheus, Grafana, Loki and Tempo. In production, used by several student associations."
       },
       "kent": {
         "role": "Research · supervisor Michael Vollmer",
@@ -107,11 +107,11 @@
         "detail": "Study centred on indirect threaded code and opcode dispatch. Designing a small dedicated language rather than extending an existing codebase, so the impact of Rust's choices (pattern matching, enums, ownership) on branch prediction and real-world performance can be isolated."
       },
       "lucca": {
-        "role": "Platform & Tooling intern · mentor Brian Guitteny",
-        "period": "2024",
+        "role": "Fullstack platform intern · mentor Brian Guitteny",
+        "period": "2025",
         "title": "Lucca",
         "summary": "Internal tooling for product teams (TypeScript, Angular).",
-        "detail": "Worked on shared platform tools used across Lucca's product teams under Brian Guitteny's mentorship. TypeScript, Angular, continuous integration. Good school on platform debt, internal libraries, and long-term stability."
+        "detail": "Designed and built an internal TypeScript and Angular dashboard for ops teams. Extended a GitHub bot to automate the pull request lifecycle and carried out a major database schema refactor."
       },
       "freelance": {
         "role": "Freelance",
@@ -164,63 +164,7 @@
     "kicker": "Path",
     "title": "Timeline",
     "track_school": "School",
-    "track_work": "Work",
-    "items": {
-      "kent": {
-        "title": "MSc, University of Kent",
-        "place": "Canterbury, UK",
-        "period": "2025 — 2026",
-        "detail": "Research project on Rust interpreters."
-      },
-      "next": {
-        "title": "Your company?",
-        "place": "Nantes or remote",
-        "period": "Sept 2026 - ?",
-        "detail": "Backend, fullstack or platform part-time internship, 3 days a week. If it fits, let's talk."
-      },
-      "eventdeer": {
-        "title": "EventDeer · Co-founder, CTO",
-        "place": "France · Epitech EIP",
-        "period": "2025 — present",
-        "detail": "Built the platform, the infrastructure and the technical team. Stood up a Talos Kubernetes cluster on OVH bare-metal machines, with full GitOps through ArgoCD and Kargo. Observability through Prometheus, Grafana, Loki, Tempo. Also backend and frontend work, depending on what the moment needs."
-      },
-      "lucca": {
-        "title": "Lucca · Platform & Tooling intern",
-        "place": "Nantes",
-        "period": "April - Sept. 2025",
-        "detail": "Built a DevOps dashboard in Angular and TypeScript. Refactored the Postgres database schema to better model git artefacts and objects. Improved the PR-checking bot. Under Brian Guitteny's mentorship, in Lucca's platform team."
-      },
-      "epitech": {
-        "title": "Epitech · Engineering programme",
-        "place": "Nantes",
-        "period": "2022 — 2027",
-        "detail": "Computer engineering degree."
-      },
-      "cmi": {
-        "title": "BSc CMI Maths · OPTIM track",
-        "place": "University of Nantes",
-        "period": "2021 — 2022",
-        "detail": "Engineering master track, optimisation option. One year before switching to Epitech."
-      },
-      "freelance": {
-        "title": "Freelance Java",
-        "place": "Remote",
-        "period": "2022",
-        "detail": "Occasional backend engagements."
-      },
-      "ganacos": {
-        "title": "Ganacos · Fullstack intern",
-        "place": "Nantes",
-        "period": "July - Dec. 2023",
-        "detail": "Built an EPM (Enterprise Performance Management) in Java / Play2 and Angular, under Joseph BUDIN's mentorship. First experience in a company, a strong school on process and technical debt."
-      },
-      "iseg": {
-        "title": "ISEG · PHP/HTML/CSS instructor",
-        "place": "Nantes",
-        "period": "January 2025",
-        "detail": "Led a two-week workshop for ISEG students. Introduction to web development, PHP, HTML, CSS. Set up exercises and regular assessments. Two classes of around twenty students each, with very mixed levels. A rewarding experience in passing on knowledge and adapting teaching to the audience."
-      }
-    }
+    "track_work": "Work"
   },
   "hobbies": {
     "kicker": "Hobbies",

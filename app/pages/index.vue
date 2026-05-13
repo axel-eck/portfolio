@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Motion, type Transition } from 'motion-v'
-import { marked } from 'marked'
+import { csvMeta, loadMarkdownCollection } from '~/composables/useMarkdownCollection'
 
 const { locale, t } = useI18n()
 const runtimeConfig = useRuntimeConfig()
@@ -50,6 +50,7 @@ const stack = {
     { label: 'Vue 3 / Nuxt', icon: 'simple-icons:vuedotjs' },
     { label: 'NestJS', icon: 'simple-icons:nestjs' },
     { label: 'TypeScript', icon: 'simple-icons:typescript' },
+    { label: 'Python', icon: 'simple-icons:python' },
     { label: 'PostgreSQL', icon: 'simple-icons:postgresql' },
     { label: 'Drizzle', icon: 'simple-icons:drizzle' },
     { label: 'Prisma', icon: 'simple-icons:prisma' },
@@ -63,6 +64,7 @@ const stack = {
     { label: 'Proxmox', icon: 'simple-icons:proxmox' },
     { label: 'ArgoCD', icon: 'simple-icons:argo' },
     { label: 'Kargo', icon: 'simple-icons:argo' },
+    { label: 'OpenBao', icon: 'lucide:key-round' },
     { label: 'Kustomize', icon: 'simple-icons:kubernetes' },
   ],
   observability: [
@@ -91,7 +93,6 @@ interface Writing {
   excerpt: string
   html: string
 }
-type WritingLocale = 'fr' | 'en'
 
 const writingSources = import.meta.glob('../../content/writings/**/*.md', {
   query: '?raw',
@@ -99,49 +100,16 @@ const writingSources = import.meta.glob('../../content/writings/**/*.md', {
   eager: true,
 }) as Record<string, string>
 
-function parseHeader(raw: string): { meta: Record<string, string>, body: string } {
-  const lines = raw.replace(/\r\n/g, '\n').split('\n')
-  const sepIdx = lines.findIndex(line => /^-{3,}\s*$/.test(line))
-  const headerLines = sepIdx === -1 ? [] : lines.slice(0, sepIdx)
-  const bodyLines = sepIdx === -1 ? lines : lines.slice(sepIdx + 1)
-  const meta: Record<string, string> = {}
-
-  for (const line of headerLines) {
-    const match = line.match(/^(\w+)\s*:\s*(.+)\s*$/)
-    if (match) meta[match[1]!.toLowerCase()] = match[2]!.trim()
-  }
-
-  return { meta, body: bodyLines.join('\n').trim() }
-}
-
-function plainExcerpt(body: string, max = 220) {
-  const text = body
-    .replace(/```[\s\S]*?```/g, '')
-    .replace(/[#>*_`[\]]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-
-  return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text
-}
-
 function loadWritings(localeCode: string): Writing[] {
-  const writingLocale: WritingLocale = localeCode === 'en' ? 'en' : 'fr'
-
-  return Object.entries(writingSources)
-    .filter(([path]) => path.includes(`/content/writings/${writingLocale}/`))
-    .map(([path, raw]) => {
-      const name = path.split('/').pop() ?? ''
-      const { meta, body } = parseHeader(raw)
-
-      return {
-        slug: name.replace(/\.md$/, ''),
-        title: meta.title ?? name.replace(/\.md$/, ''),
-        date: meta.date ?? '',
-        tags: (meta.tags ?? '').split(',').map(tag => tag.trim()).filter(Boolean),
-        excerpt: plainExcerpt(body),
-        html: marked.parse(body, { gfm: true, breaks: false, async: false }) as string,
-      }
-    })
+  return loadMarkdownCollection(writingSources, 'writings', localeCode)
+    .map(({ slug, meta, excerpt, html }) => ({
+      slug,
+      title: meta.title ?? slug,
+      date: meta.date ?? '',
+      tags: csvMeta(meta.tags),
+      excerpt,
+      html,
+    }))
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
 }
 
@@ -169,43 +137,64 @@ const quoteSources = import.meta.glob('../../content/quotes/**/*.md', {
 }) as Record<string, string>
 
 function loadQuotes(localeCode: string): Quote[] {
-  const quoteLocale: WritingLocale = localeCode === 'en' ? 'en' : 'fr'
-
-  return Object.entries(quoteSources)
-    .filter(([path]) => path.includes(`/content/quotes/${quoteLocale}/`))
-    .map(([path, raw]) => {
-      const name = path.split('/').pop() ?? ''
-      const { meta, body } = parseHeader(raw)
-
-      return {
-        slug: name.replace(/\.md$/, ''),
-        entreprise: meta.entreprise ?? '',
-        entrepriseLogo: meta.entreprise_logo_link ?? '',
-        entrepriseLink: meta.entreprise_link ?? '',
-        personName: meta.person_name ?? '',
-        personRole: meta.person_role ?? '',
-        personLink: meta.person_link ?? '',
-        personAvatar: meta.person_avatar_link ?? '',
-        period: meta.period ?? '',
-        date: meta.date ?? '',
-        html: marked.parse(body, { gfm: true, breaks: false, async: false }) as string,
-      }
-    })
+  return loadMarkdownCollection(quoteSources, 'quotes', localeCode)
+    .map(({ slug, meta, html }) => ({
+      slug,
+      entreprise: meta.entreprise ?? '',
+      entrepriseLogo: meta.entreprise_logo_link ?? '',
+      entrepriseLink: meta.entreprise_link ?? '',
+      personName: meta.person_name ?? '',
+      personRole: meta.person_role ?? '',
+      personLink: meta.person_link ?? '',
+      personAvatar: meta.person_avatar_link ?? '',
+      period: meta.period ?? '',
+      date: meta.date ?? '',
+      html,
+    }))
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
 }
 
 const quotes = computed(() => loadQuotes(locale.value))
 
-const projects = ['eventdeer', 'kent', 'lucca', 'freelance'] as const
-const pathSchool = ['kent', 'epitech', 'cmi'] as const
-const pathWork = ['next', 'eventdeer', 'lucca', 'iseg', 'ganacos', 'freelance'] as const
-const pathWorkTags: Record<string, string[]> = {
-  eventdeer: ['Vue', 'NestJS', 'Postgres', 'Talos', 'Kubernetes', 'ArgoCD', 'Kargo', 'Prometheus'],
-  lucca: ['TypeScript', 'Angular', 'Postgres'],
-  iseg: ['PHP', 'HTML', 'CSS'],
-  ganacos: ['Java', 'Play2', 'Angular'],
-  freelance: ['Java', 'Spring'],
+interface PathEntry {
+  slug: string
+  track: 'school' | 'work'
+  title: string
+  place: string
+  period: string
+  tags: string[]
+  order: number
+  isNext: boolean
+  html: string
 }
+
+const pathSources = import.meta.glob('../../content/path/**/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
+
+function loadPath(localeCode: string): PathEntry[] {
+  return loadMarkdownCollection(pathSources, 'path', localeCode)
+    .map(({ slug, meta, html }) => ({
+      slug,
+      track: meta.track === 'work' ? 'work' : 'school',
+      title: meta.title ?? slug,
+      place: meta.place ?? '',
+      period: meta.period ?? '',
+      tags: csvMeta(meta.tags),
+      order: Number.parseInt(meta.order ?? '0', 10) || 0,
+      isNext: meta.variant === 'next' || slug === 'next',
+      html,
+    }))
+    .sort((a, b) => a.order - b.order)
+}
+
+const pathEntries = computed(() => loadPath(locale.value))
+const pathSchool = computed(() => pathEntries.value.filter(item => item.track === 'school'))
+const pathWork = computed(() => pathEntries.value.filter(item => item.track === 'work'))
+
+const projects = ['eventdeer', 'kent', 'lucca', 'freelance'] as const
 const hobbies = [
   { id: 'sailing',  icon: 'lucide:sailboat' },
   { id: 'f1',       icon: 'checkered-flag' },
@@ -644,7 +633,7 @@ watch(cvHref, async (href) => {
             <ol class="relative space-y-10 border-l border-ink-800 pl-8">
               <Motion
                 v-for="(item, i) in pathSchool"
-                :key="item"
+                :key="item.slug"
                 :initial="{ opacity: 0, x: -10 }"
                 :while-in-view="{ opacity: 1, x: 0 }"
                 :in-view-options="{ once: true, margin: '-40px' }"
@@ -653,9 +642,9 @@ watch(cvHref, async (href) => {
                 class="relative"
               >
                 <span class="absolute -left-9.25 top-1.5 size-3 rounded-full bg-ink-900 ring-2 ring-main-500/70 shadow-[0_0_12px_var(--color-main-500)]" />
-                <p class="font-mono text-xs text-ink-400">{{ $t(`path.items.${item}.period`) }} · {{ $t(`path.items.${item}.place`) }}</p>
-                <h3 class="mt-1 text-lg font-medium text-ink-50">{{ $t(`path.items.${item}.title`) }}</h3>
-                <p class="mt-1 text-sm text-ink-400">{{ $t(`path.items.${item}.detail`) }}</p>
+                <p class="font-mono text-xs text-ink-400">{{ item.period }} · {{ item.place }}</p>
+                <h3 class="mt-1 text-lg font-medium text-ink-50">{{ item.title }}</h3>
+                <article class="prose-writing mt-1 text-sm text-ink-400" v-html="item.html" />
               </Motion>
             </ol>
           </div>
@@ -669,7 +658,7 @@ watch(cvHref, async (href) => {
             <ol class="relative space-y-10 border-l border-ink-800 pl-8">
               <Motion
                 v-for="(item, i) in pathWork"
-                :key="item"
+                :key="item.slug"
                 :initial="{ opacity: 0, x: -10 }"
                 :while-in-view="{ opacity: 1, x: 0 }"
                 :in-view-options="{ once: true, margin: '-40px' }"
@@ -679,7 +668,7 @@ watch(cvHref, async (href) => {
               >
                 <!-- pending dot for "next" slot, solid for others -->
                 <span
-                  v-if="item === 'next'"
+                  v-if="item.isNext"
                   class="absolute -left-9.75 top-1 flex size-4 items-center justify-center rounded-full bg-ink-900 ring-2 ring-dashed ring-amber-500/70"
                 >
                   <Icon name="lucide:plus" class="size-2.5 text-amber-300" stroke-width="3" />
@@ -689,32 +678,32 @@ watch(cvHref, async (href) => {
                   class="absolute -left-9.25 top-1.5 size-3 rounded-full bg-ink-900 ring-2 ring-amber-500/70 shadow-[0_0_12px_var(--warn-shadow)]"
                 />
 
-                <template v-if="item === 'next'">
+                <template v-if="item.isNext">
                   <a
                     href="#contact"
                     class="group block rounded-xl border border-dashed border-amber-500/40 bg-amber-500/4 p-4 transition hover:border-amber-500/70 hover:bg-amber-500/8"
                   >
                     <p class="flex items-center gap-2 font-mono text-xs text-amber-300/80">
                       <Icon name="lucide:refresh-ccw" class="size-3 animate-spin [animation-duration:4s] [animation-direction:reverse]" />
-                      {{ $t(`path.items.${item}.period`) }} · {{ $t(`path.items.${item}.place`) }}
+                      {{ item.period }} · {{ item.place }}
                     </p>
                     <h3 class="mt-1.5 flex items-center gap-2 text-lg font-medium text-amber-100">
-                      {{ $t(`path.items.${item}.title`) }}
+                      {{ item.title }}
                       <Icon
                         name="lucide:arrow-right"
                         class="size-4 text-amber-300/70 transition group-hover:translate-x-0.5 group-hover:text-amber-200"
                       />
                     </h3>
-                    <p class="mt-1 text-sm text-ink-400">{{ $t(`path.items.${item}.detail`) }}</p>
+                    <article class="prose-writing mt-1 text-sm text-ink-400" v-html="item.html" />
                   </a>
                 </template>
                 <template v-else>
-                  <p class="font-mono text-xs text-ink-400">{{ $t(`path.items.${item}.period`) }} · {{ $t(`path.items.${item}.place`) }}</p>
-                  <h3 class="mt-1 text-lg font-medium text-ink-50">{{ $t(`path.items.${item}.title`) }}</h3>
-                  <p class="mt-1 text-sm text-ink-400">{{ $t(`path.items.${item}.detail`) }}</p>
-                  <div v-if="pathWorkTags[item]?.length" class="mt-2.5 flex flex-wrap gap-1.5">
+                  <p class="font-mono text-xs text-ink-400">{{ item.period }} · {{ item.place }}</p>
+                  <h3 class="mt-1 text-lg font-medium text-ink-50">{{ item.title }}</h3>
+                  <article class="prose-writing mt-1 text-sm text-ink-400" v-html="item.html" />
+                  <div v-if="item.tags.length" class="mt-2.5 flex flex-wrap gap-1.5">
                     <span
-                      v-for="tag in pathWorkTags[item]"
+                      v-for="tag in item.tags"
                       :key="tag"
                       class="rounded-md bg-ink-800 px-2 py-0.5 font-mono text-[10px] text-ink-300 ring-1 ring-inset ring-ink-700"
                     >{{ tag }}</span>

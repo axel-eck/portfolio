@@ -18,10 +18,10 @@
   },
   "hero": {
     "status": "Recherche stage alterné, septembre 2026",
-    "tagline": "Axel — Nantes / remote",
+    "tagline": "Axel — Nantes / télétravail",
     "name": "Axel Eckenberg",
     "roles": "Fullstack · SRE",
-    "lede": "Étudiant ingénieur (Epitech, MSc Kent). Co-fondateur & CTO d'EventDeer.",
+    "lede": "Étudiant ingénieur Epitech, actuellement en MSc à l'University of Kent. Co-fondateur & CTO d'EventDeer.",
     "blurb": "Je construis des produits de bout en bout, de la base de données à la fibre. Vue, NestJS, Kubernetes, observabilité. Recherche actuelle à Kent : interpréteurs efficaces en Rust.",
     "cta_contact": "Me contacter",
     "cta_cv": "Voir le CV",
@@ -80,9 +80,9 @@
         "title": "kent / recherche"
       }
     },
-    "p1": "Co-fondateur et CTO d'EventDeer, plateforme Vue/NestJS de gestion d'événements pour associations étudiantes. En production, sur des machines bare-metal louées chez OVH et opérées par nous-mêmes : Talos sur Proxmox, GitOps complet via ArgoCD et Kargo, observabilité Prometheus / Grafana / Loki / Tempo.",
+    "p1": "Co-fondateur et CTO d'EventDeer, plateforme Vue/NestJS de gestion d'événements pour associations étudiantes. En production, sur des machines bare-metal louées chez OVH et opérées par nous-mêmes : Talos sur Proxmox, GitOps complet via ArgoCD et Kargo, secrets gérés avec OpenBao, observabilité Prometheus / Grafana / Loki / Tempo.",
     "p2": "En parallèle, je termine un MSc à l'université du Kent. Projet de recherche en cours avec Michael Vollmer sur les fonctionnalités de Rust appliquées aux interpréteurs efficaces (indirect threaded code, dispatch). Je conçois mon propre langage minimal pour l'occasion, plutôt que de partir d'une base existante.",
-    "p3": "Je cherche un stage alterné backend ou plateforme (stage à temps partiel), 3 jours par semaine, à partir de septembre 2026. Sur Nantes ou en télétravail."
+    "p3": "Je cherche un stage alterné backend ou plateforme, 3 jours par semaine pendant 6 mois, à partir de septembre 2026. Sur Nantes ou en télétravail."
   },
   "projects": {
     "kicker": "Projets",
@@ -97,21 +97,21 @@
         "period": "2023 — aujourd'hui",
         "title": "EventDeer",
         "summary": "Plateforme de gestion d'événements et de billetterie pour associations étudiantes.",
-        "detail": "Côté front Vue 3 / Nuxt, côté back NestJS / Postgres. Infrastructure sur machines bare-metal louées chez OVH, avec Proxmox, cluster Kubernetes Talos, GitOps via ArgoCD et Kargo. Observabilité complète Prometheus, Grafana, Loki, Tempo. External DNS gère automatiquement les enregistrements OVH. En production, utilisé par plusieurs associations."
+        "detail": "Côté front Vue 3 / Nuxt, côté back NestJS / Postgres. Infrastructure sur machines bare-metal louées chez OVH, avec Proxmox, cluster Kubernetes Talos, GitOps via ArgoCD et Kargo, secrets gérés avec OpenBao. Observabilité complète avec Prometheus, Grafana, Loki et Tempo. En production, utilisé par plusieurs associations."
       },
       "kent": {
         "role": "Recherche · superviseur Michael Vollmer",
         "period": "2026",
         "title": "Interpréteurs efficaces en Rust",
         "summary": "Projet de recherche MSc sur l'effet des fonctionnalités du langage Rust sur l'écriture d'interpréteurs performants.",
-        "detail": "Étude centrée sur le indirect threaded code et l'optimisation du dispatch d'opcodes. Conception d'un langage minimal dédié, plutôt qu'extension d'une base existante. L'idée est d'isoler l'impact des choix de Rust (pattern matching, enums, ownership) sur la prédiction de branchement et les performances réelles."
+        "detail": "Étude centrée sur l'indirect threaded code et l'optimisation du dispatch d'opcodes. Conception d'un langage minimal dédié, plutôt qu'extension d'une base existante. L'idée est d'isoler l'impact des choix de Rust (pattern matching, enums, ownership) sur la prédiction de branchement et les performances réelles."
       },
       "lucca": {
-        "role": "Stage Platform & Tooling · tuteur Brian Guitteny",
-        "period": "2024",
+        "role": "Stage développeur fullstack plateforme · tuteur Brian Guitteny",
+        "period": "2025",
         "title": "Lucca",
         "summary": "Outillage interne pour les équipes produit (TypeScript, Angular).",
-        "detail": "Contribution aux outils plateforme partagés par les équipes produit Lucca, sous le tutorat de Brian Guitteny. TypeScript, Angular, intégration continue. Bonne école sur la dette de plateforme, les bibliothèques internes et la stabilité long terme."
+        "detail": "Conception et développement d'un dashboard interne en TypeScript et Angular pour les équipes ops. Extension d'un bot GitHub pour automatiser le cycle de vie des pull requests et refactor majeur du schéma de base de données."
       },
       "freelance": {
         "role": "Freelance",
@@ -164,63 +164,7 @@
     "kicker": "Parcours",
     "title": "Chronologie",
     "track_school": "École",
-    "track_work": "Travail",
-    "items": {
-      "kent": {
-        "title": "MSc, University of Kent",
-        "place": "Canterbury, UK",
-        "period": "2025 — 2026",
-        "detail": "Projet de recherche sur les interpréteurs en Rust."
-      },
-      "next": {
-        "title": "Votre entreprise ?",
-        "place": "Nantes ou télétravail",
-        "period": "sept. 2026 - ?",
-        "detail": "Stage alterné backend/fullstack ou plateforme, 3 jours par semaine. Si ça matche, on en parle ?"
-      },
-      "eventdeer": {
-        "title": "EventDeer · Co-fondateur, CTO",
-        "place": "France · EIP Epitech",
-        "period": "2025 — aujourd'hui",
-        "detail": "Construction de la plateforme, de l'infrastructure et de l'équipe technique. Construction d'un cluster Kubernetes Talos sur machines bare-metal OVH, avec GitOps complet via ArgoCD et Kargo. Observabilité Prometheus / Grafana / Loki / Tempo. Mais aussi travail backend et frontend, selon les besoins du moment."
-      },
-      "lucca": {
-        "title": "Lucca · Stage Platform & Tooling",
-        "place": "Nantes",
-        "period": "avril - sept. 2025",
-        "detail": "Développement d'un dashboard DevOps. en Angular et TypeScript. Refector du schema de base de données Postgres pour mieux modéliser les artefacts et objects git. Amélioration du robot de vérification des PRs. Sous le tutorat de Brian Guitteny, dans l'équipe plateforme de Lucca."
-      },
-      "epitech": {
-        "title": "Epitech · Cycle ingénieur",
-        "place": "Nantes",
-        "period": "2022 — 2027",
-        "detail": "Diplôme d'ingénieur informatique."
-      },
-      "cmi": {
-        "title": "Licence CMI Maths · Option OPTIM",
-        "place": "Université de Nantes",
-        "period": "2021 — 2022",
-        "detail": "Cursus Master en Ingénierie, parcours optimisation. Une année avant de bifurquer vers Epitech."
-      },
-      "freelance": {
-        "title": "Freelance Java",
-        "place": "Télétravail",
-        "period": "2022",
-        "detail": "Missions backend ponctuelles."
-      },
-      "ganacos": {
-        "title": "Ganacos · Stage fullstack",
-        "place": "Nantes",
-        "period": "juil. - déc. 2023",
-        "detail": "Développement d'un EPM (Enterprise Performance Management) en Java / Play2 et Angular, sous le tutorat de Joseph BUDIN. Première expérience en entreprise, très formatrice sur les processus et la dette technique."
-      },
-      "iseg": {
-        "title": "ISEG · Intervenant PHP/HTML/CSS",
-        "place": "Nantes",
-        "period": "janvier 2025",
-        "detail": "Intervenant sur un workshop de deux semaines pour les étudiants d'ISEG. Introduction au développement web, PHP, HTML, CSS. Mise en place de TP et évaluations régulières. Deux classes d'une vingtaines d'étudiants chacune, avec des niveaux très hétérogènes. Expérience enrichissante de transmission de connaissances et d'adaptation pédagogique."
-      }
-    }
+    "track_work": "Travail"
   },
   "hobbies": {
     "kicker": "Loisirs",

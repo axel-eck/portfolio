@@ -5,8 +5,8 @@ Person_Name: Quentin JOLY
 Person_Role: Site Reliability Engineer
 Person_Link: https://www.linkedin.com/in/quentin-joly-it/
 Person_Avatar_Link: https://media.licdn.com/dms/image/v2/D4D03AQHAkHRMVP9BPQ/profile-displayphoto-shrink_200_200/B4DZcDpiqSHEAY-/0/1748112912430?e=1779926400&v=beta&t=CpG6I1jkvuyLMJy_56xADGpvZLC_5o0WMjMM0wVU15E
-Period: April – September 2025
-Date: 2026-06-01
+Period: May – August 2025
+Date: May 1, 2026
 ---
 *[...]* During his time at Lucca, he showed real motivation and creativity (even on topics outside his scope 😄).
 
