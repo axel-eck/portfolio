@@ -198,7 +198,14 @@ const quotes = computed(() => loadQuotes(locale.value))
 
 const projects = ['eventdeer', 'kent', 'lucca', 'freelance'] as const
 const pathSchool = ['kent', 'epitech', 'cmi'] as const
-const pathWork = ['next', 'eventdeer', 'lucca', 'freelance'] as const
+const pathWork = ['next', 'eventdeer', 'lucca', 'iseg', 'ganacos', 'freelance'] as const
+const pathWorkTags: Record<string, string[]> = {
+  eventdeer: ['Vue', 'NestJS', 'Postgres', 'Talos', 'Kubernetes', 'ArgoCD', 'Kargo', 'Prometheus'],
+  lucca: ['TypeScript', 'Angular', 'Postgres'],
+  iseg: ['PHP', 'HTML', 'CSS'],
+  ganacos: ['Java', 'Play2', 'Angular'],
+  freelance: ['Java', 'Spring'],
+}
 const hobbies = [
   { id: 'sailing',  icon: 'lucide:sailboat' },
   { id: 'f1',       icon: 'checkered-flag' },
@@ -705,6 +712,13 @@ watch(cvHref, async (href) => {
                   <p class="font-mono text-xs text-ink-400">{{ $t(`path.items.${item}.period`) }} · {{ $t(`path.items.${item}.place`) }}</p>
                   <h3 class="mt-1 text-lg font-medium text-ink-50">{{ $t(`path.items.${item}.title`) }}</h3>
                   <p class="mt-1 text-sm text-ink-400">{{ $t(`path.items.${item}.detail`) }}</p>
+                  <div v-if="pathWorkTags[item]?.length" class="mt-2.5 flex flex-wrap gap-1.5">
+                    <span
+                      v-for="tag in pathWorkTags[item]"
+                      :key="tag"
+                      class="rounded-md bg-ink-800 px-2 py-0.5 font-mono text-[10px] text-ink-300 ring-1 ring-inset ring-ink-700"
+                    >{{ tag }}</span>
+                  </div>
                 </template>
               </Motion>
             </ol>

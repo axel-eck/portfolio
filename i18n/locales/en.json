@@ -175,38 +175,50 @@
       "next": {
         "title": "Your company?",
         "place": "Nantes or remote",
-        "period": "Sept 2026 → ?",
-        "detail": "Backend or platform part-time internship, 3 days a week. If it fits, let's talk."
+        "period": "Sept 2026 - ?",
+        "detail": "Backend, fullstack or platform part-time internship, 3 days a week. If it fits, let's talk."
       },
       "eventdeer": {
-        "title": "EventDeer · co-founder, CTO",
+        "title": "EventDeer · Co-founder, CTO",
         "place": "France · Epitech EIP",
-        "period": "2023 — present",
-        "detail": "Built the platform, the infrastructure and the technical team."
+        "period": "2025 — present",
+        "detail": "Built the platform, the infrastructure and the technical team. Stood up a Talos Kubernetes cluster on OVH bare-metal machines, with full GitOps through ArgoCD and Kargo. Observability through Prometheus, Grafana, Loki, Tempo. Also backend and frontend work, depending on what the moment needs."
       },
       "lucca": {
         "title": "Lucca · Platform & Tooling intern",
         "place": "Nantes",
-        "period": "2024",
-        "detail": "Alongside Epitech. Platform tooling, TypeScript, Angular."
+        "period": "April - Sept. 2025",
+        "detail": "Built a DevOps dashboard in Angular and TypeScript. Refactored the Postgres database schema to better model git artefacts and objects. Improved the PR-checking bot. Under Brian Guitteny's mentorship, in Lucca's platform team."
       },
       "epitech": {
-        "title": "Epitech · engineering programme",
+        "title": "Epitech · Engineering programme",
         "place": "Nantes",
-        "period": "2021 — 2026",
+        "period": "2022 — 2027",
         "detail": "Computer engineering degree."
       },
       "cmi": {
         "title": "BSc CMI Maths · OPTIM track",
         "place": "University of Nantes",
-        "period": "2020 — 2021",
+        "period": "2021 — 2022",
         "detail": "Engineering master track, optimisation option. One year before switching to Epitech."
       },
       "freelance": {
         "title": "Freelance Java",
         "place": "Remote",
-        "period": "2022 — 2023",
+        "period": "2022",
         "detail": "Occasional backend engagements."
+      },
+      "ganacos": {
+        "title": "Ganacos · Fullstack intern",
+        "place": "Nantes",
+        "period": "July - Dec. 2023",
+        "detail": "Built an EPM (Enterprise Performance Management) in Java / Play2 and Angular, under Joseph BUDIN's mentorship. First experience in a company, a strong school on process and technical debt."
+      },
+      "iseg": {
+        "title": "ISEG · PHP/HTML/CSS instructor",
+        "place": "Nantes",
+        "period": "January 2025",
+        "detail": "Led a two-week workshop for ISEG students. Introduction to web development, PHP, HTML, CSS. Set up exercises and regular assessments. Two classes of around twenty students each, with very mixed levels. A rewarding experience in passing on knowledge and adapting teaching to the audience."
       }
     }
   },

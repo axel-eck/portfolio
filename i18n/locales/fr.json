@@ -175,38 +175,50 @@
       "next": {
         "title": "Votre entreprise ?",
         "place": "Nantes ou télétravail",
-        "period": "sept. 2026 → ?",
-        "detail": "Stage alterné backend ou plateforme, 3 jours par semaine. Si ça matche, on en parle ?"
+        "period": "sept. 2026 - ?",
+        "detail": "Stage alterné backend/fullstack ou plateforme, 3 jours par semaine. Si ça matche, on en parle ?"
       },
       "eventdeer": {
-        "title": "EventDeer · co-fondateur, CTO",
+        "title": "EventDeer · Co-fondateur, CTO",
         "place": "France · EIP Epitech",
-        "period": "2023 — aujourd'hui",
-        "detail": "Construction de la plateforme, de l'infrastructure et de l'équipe technique."
+        "period": "2025 — aujourd'hui",
+        "detail": "Construction de la plateforme, de l'infrastructure et de l'équipe technique. Construction d'un cluster Kubernetes Talos sur machines bare-metal OVH, avec GitOps complet via ArgoCD et Kargo. Observabilité Prometheus / Grafana / Loki / Tempo. Mais aussi travail backend et frontend, selon les besoins du moment."
       },
       "lucca": {
-        "title": "Lucca · stage Platform & Tooling",
+        "title": "Lucca · Stage Platform & Tooling",
         "place": "Nantes",
-        "period": "2024",
-        "detail": "En parallèle d'Epitech. Outils plateforme, TypeScript, Angular."
+        "period": "avril - sept. 2025",
+        "detail": "Développement d'un dashboard DevOps. en Angular et TypeScript. Refector du schema de base de données Postgres pour mieux modéliser les artefacts et objects git. Amélioration du robot de vérification des PRs. Sous le tutorat de Brian Guitteny, dans l'équipe plateforme de Lucca."
       },
       "epitech": {
-        "title": "Epitech · cycle ingénieur",
+        "title": "Epitech · Cycle ingénieur",
         "place": "Nantes",
-        "period": "2021 — 2026",
+        "period": "2022 — 2027",
         "detail": "Diplôme d'ingénieur informatique."
       },
       "cmi": {
-        "title": "Licence CMI Maths · option OPTIM",
+        "title": "Licence CMI Maths · Option OPTIM",
         "place": "Université de Nantes",
-        "period": "2020 — 2021",
+        "period": "2021 — 2022",
         "detail": "Cursus Master en Ingénierie, parcours optimisation. Une année avant de bifurquer vers Epitech."
       },
       "freelance": {
         "title": "Freelance Java",
         "place": "Télétravail",
-        "period": "2022 — 2023",
+        "period": "2022",
         "detail": "Missions backend ponctuelles."
+      },
+      "ganacos": {
+        "title": "Ganacos · Stage fullstack",
+        "place": "Nantes",
+        "period": "juil. - déc. 2023",
+        "detail": "Développement d'un EPM (Enterprise Performance Management) en Java / Play2 et Angular, sous le tutorat de Joseph BUDIN. Première expérience en entreprise, très formatrice sur les processus et la dette technique."
+      },
+      "iseg": {
+        "title": "ISEG · Intervenant PHP/HTML/CSS",
+        "place": "Nantes",
+        "period": "janvier 2025",
+        "detail": "Intervenant sur un workshop de deux semaines pour les étudiants d'ISEG. Introduction au développement web, PHP, HTML, CSS. Mise en place de TP et évaluations régulières. Deux classes d'une vingtaines d'étudiants chacune, avec des niveaux très hétérogènes. Expérience enrichissante de transmission de connaissances et d'adaptation pédagogique."
       }
     }
   },
