@@ -132,14 +132,15 @@ bun install --frozen-lockfile
 bun run generate
 ```
 
-For the project page URL, it sets:
+For the custom domain, it sets:
 
 ```text
-NUXT_APP_BASE_URL=/portfolio/
-NUXT_PUBLIC_SITE_URL=https://axel-eck.github.io/portfolio
+NUXT_APP_BASE_URL=/
+NUXT_PUBLIC_SITE_URL=https://axel-eck.fr
 ```
 
-If the site later moves to a custom domain at the root, remove the custom `NUXT_APP_BASE_URL` value or set it to `/`, and update `NUXT_PUBLIC_SITE_URL`.
+The `public/CNAME` file keeps GitHub Pages attached to `axel-eck.fr`
+when the static artifact is deployed.
 
 ## SEO
 
