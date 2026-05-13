@@ -95,7 +95,7 @@ const allDone = computed(() => stageStates.value.every(s => s === 'done'))
 
     <!-- graph -->
     <div class="relative mt-6 sm:mt-7">
-      <div class="grid min-w-0 grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-start gap-y-3">
+      <div class="grid min-w-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-y-3">
         <template v-for="(s, i) in stages" :key="s.id">
           <!-- stage node -->
           <div class="flex flex-col items-center text-center">
